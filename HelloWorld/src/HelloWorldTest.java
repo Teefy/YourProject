@@ -10,7 +10,6 @@ public class HelloWorldTest {
 		HelloWorld hello = new HelloWorld();
 			 		
 		assertEquals("yes", hello.checkhome());
-		
-	}
 
+	}
 }
