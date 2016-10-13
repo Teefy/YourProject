@@ -3,12 +3,7 @@ import org.openqa.selenium.By;
 
 public class mantisoperaties {
 	
-	public static void main(String[] args) 
-	{
-		Nieuwebevinding();
-	}
-	
-	public static void Nieuwebevinding() 
+	public String Nieuwebevinding() 
 	{
 		inloggen inloggen = new inloggen();
 		WebDriver driver = inloggen.InternInloggen();
@@ -16,5 +11,18 @@ public class mantisoperaties {
 		driver.findElement(By.linkText("KWF")).click();
 		driver.findElement(By.linkText("GMS 360")).click();
 		driver.findElement(By.linkText("Issues")).click();
+		
+		String a = driver.findElement(By.linkText("View Issues")).getText();
+		String b = "View Issues";
+		String returnvalue = null;
+		   
+		   if ((a).equals(b)) 
+		   {
+			System.out.println("Nieuwe bevinding");
+			returnvalue = "yes";
+		   }
+		
+		driver.close();
+		return returnvalue;
 	}
 }
