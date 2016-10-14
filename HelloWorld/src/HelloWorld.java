@@ -24,7 +24,7 @@ public class HelloWorld {
 		   
 		   if ((a).equals(b)) 
 		   {
-			System.out.println("yes");
+			System.out.println("Team Liquid Home");
 			derp = "yes";
 		   }
 		    
