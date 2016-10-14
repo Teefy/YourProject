@@ -5,14 +5,9 @@ import org.junit.Test;
 public class LoginPortalTest {
 
 	@Test
-	public void test() {
-		
-		LoginPortal test = new LoginPortal();
-			 		 
-		// Omgeving: PRO of ACC  
-		// Rol: softwaredeveloper, testanalyst, testleader, stakeholder, projectmanager
-		
-		assertEquals("yes", (test.inloggen("ACC", "softwaredeveloper")));
-
+	public void TC1() 
+	{
+		mantisoperaties Tc2 = new mantisoperaties();
+		assertEquals("yes", Tc2.Nieuwebevinding());
 	}
 }

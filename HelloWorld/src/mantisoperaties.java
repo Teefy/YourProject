@@ -11,8 +11,8 @@ public class mantisoperaties {
 	
 	public String Nieuwebevinding() 
 	{
-		LoginPortal inloggen = new LoginPortal();
-		WebDriver driver = inloggen.inloggen("PRO","testleader");
+		LoginPortal PortalInloggen = new LoginPortal();
+		WebDriver driver = PortalInloggen.inloggen("PRO","testleader");
 		driver.manage().window().maximize(); 
 		driver.findElement(By.id("arrow-right-wrapper")).click();
 		driver.findElement(By.linkText("Issues")).click();
@@ -63,7 +63,7 @@ public class mantisoperaties {
 		   }
 				
 		returnvalue = "yes";
-		driver.close();
+		driver.quit();
 		return returnvalue;
 	}
 }

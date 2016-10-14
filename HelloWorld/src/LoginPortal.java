@@ -11,7 +11,14 @@ public class LoginPortal {
 			
 		String InlogUrl = null;
 			 
-		  System.setProperty("webdriver.chrome.driver", "c://windows//chromedriver.exe");
+		if (OsUtils.getOsName().equals("Windows 10")) {
+		System.setProperty("webdriver.chrome.driver", "c://windows//chromedriver.exe");	
+		System.out.println(OsUtils.getOsName());
+		}
+		else {
+			
+			 }
+		
 		  WebDriver driver = new ChromeDriver();
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		  
@@ -28,10 +35,10 @@ public class LoginPortal {
 		  driver.get(InlogUrl);
 		  
 		  // Formaat browser aanpassen
-		  driver.manage().window().setSize(new Dimension(1280, 820));
+		 // driver.manage().window().setSize(new Dimension(1280, 820));
 		  
 		  // Maximaal formaat browservenster
-		  // driver.manage().window().maximize(); 
+		   driver.manage().window().maximize(); 
 		  
 		  // Variablen van diverse users/rollen
 		  if (Rol == "developer") {
