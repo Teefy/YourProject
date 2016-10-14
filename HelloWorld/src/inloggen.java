@@ -4,7 +4,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class inloggen {
 
-//extra comment
+//extra comment 
 	
 public  WebDriver InternInloggen()
 	{
