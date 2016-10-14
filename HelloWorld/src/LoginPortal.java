@@ -4,16 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-// phe
 
 public class LoginPortal {
-
 		
-		public String inloggen(String Omgeving, String Rol) {
+		public WebDriver inloggen(String Omgeving, String Rol) {
 			
 		String InlogUrl = null;
 			 
-		  System.setProperty("webdriver.chrome.driver", "/home/youradministrator/eclipse/chromedriver");
+		  System.setProperty("webdriver.chrome.driver", "c://windows//chromedriver.exe");
 		  WebDriver driver = new ChromeDriver();
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		  
@@ -63,7 +61,7 @@ public class LoginPortal {
 		   
 		  // Inloggen - submit button
 		  driver.findElement(By.name("op")).click();
-		 
+				  
 		  // Verificatie inloggen
 		  String a = "Log out";
 		  String b = driver.findElement(By.linkText("Log out")).getText();				      
@@ -78,11 +76,11 @@ public class LoginPortal {
 			   System.out.println("Inloggen op CP/T Portal mislukt als " + Rol + " in " + Omgeving + "-omgeving");
 			   message = "no";
 		  }
-		   
+		  return driver;
 		  //driver.close();
-		   
-		  return message;
+		  		  
 		 }
+
 }
 
 
