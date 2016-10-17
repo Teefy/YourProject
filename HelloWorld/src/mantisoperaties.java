@@ -1,3 +1,4 @@
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
@@ -7,8 +8,11 @@ public class mantisoperaties {
 	public String Nieuwebevinding() 
 	{
 		LoginPortal PortalInloggen = new LoginPortal();
-		// Inloggen op "PRO" of "ACC" als [rollen]
+		// Inloggen op [Omgeving=] "PRO" of "ACC" en [Rollen=] "softwaredeveloper", "testanalyst", "testleader", "softwaredeveloper", "projectmanager"
 		WebDriver driver = PortalInloggen.inloggen("PRO","testleader");
+		
+
+		// CREATE ____________________________________________
 		
 		// Naar Issues --> Report Issues
 		driver.findElement(By.id("arrow-right-wrapper")).click();
@@ -16,28 +20,28 @@ public class mantisoperaties {
 		driver.findElement(By.linkText("Report Issue")).click();
 		
 		// Invul-sectie van velden en dropdowns
-		new Select(driver.findElement(By.name("category_id"))).selectByVisibleText("Request for change"); 
-		new Select(driver.findElement(By.name("reproducibility"))).selectByVisibleText("unable to reproduce"); 
-		new Select(driver.findElement(By.name("severity"))).selectByVisibleText("Very High"); 
-		new Select(driver.findElement(By.name("priority"))).selectByVisibleText("High"); 
+		new Select(driver.findElement(By.name("category_id"))).selectByVisibleText("Question"); 
+		new Select(driver.findElement(By.name("reproducibility"))).selectByVisibleText("random"); 
+		new Select(driver.findElement(By.name("severity"))).selectByVisibleText("Low"); 
+		new Select(driver.findElement(By.name("priority"))).selectByVisibleText("Medium"); 
 		
 		// Tekst invullen in 'normale' tekstvelden
-		driver.findElement(By.name("platform")).sendKeys("Fisherman Friends");
-		driver.findElement(By.name("os")).sendKeys("OS X Bakkeljauw");
-		driver.findElement(By.name("os_build")).sendKeys("2017-alpha-beta");
+		driver.findElement(By.name("platform")).sendKeys("Linux");
+		driver.findElement(By.name("os")).sendKeys("Ubuntu");
+		driver.findElement(By.name("os_build")).sendKeys("16.04 LTS");
 		
-		// Let op bij dropdowns 
-		new Select(driver.findElement(By.name("handler_id"))).selectByVisibleText("rwahjad"); 
+		// Selecteren van item in dropdown 
+		new Select(driver.findElement(By.name("handler_id"))).selectByVisibleText("testanalyst"); 
 		
 		// Tekst invullen in 'normale' tekstvelden
-		driver.findElement(By.name("summary")).sendKeys("Ryan vist op het droge");
+		driver.findElement(By.name("summary")).sendKeys("Selenium Issue Test");
 		driver.findElement(By.name("description")).sendKeys("Wanneer Ryan z'n hengel uitgooit wordt hij ineens (inclusief vis-attributen) uit een vliegtuig gegooid. Dit slaat natuurlijk nergens op. Vandaar een change-request.");
 		driver.findElement(By.name("steps_to_reproduce")).sendKeys("1. Laat Ryan een willekeurige visplek uitzoeken. 2. Laat Ryan z'n hengel uitgooien. 3. Kijk omhoog. 4. Ryan is ineens aan het skydiven.");
 		driver.findElement(By.name("additional_info")).sendKeys("Noot: Ryan is geen vliegende visser.");
 		
-		// Let op bij dropdowns
+		// Selecteren van item in dropdown
 		new Select(driver.findElement(By.name("custom_field_5"))).selectByVisibleText("testleader (Test Leader)"); 
-		new Select(driver.findElement(By.name("custom_field_1"))).selectByVisibleText("UAT"); 
+		new Select(driver.findElement(By.name("custom_field_1"))).selectByVisibleText("OAT"); 
 		
 		// Bestand en/of bijlage toevoegen - op deze manier werkt het zonder systeem-venster
 		//driver.findElement(By.id("ufile[]")).sendKeys("vul hier systeempad en naam in van bijlage");
@@ -55,12 +59,50 @@ public class mantisoperaties {
 		   
 		   if ((a).equals(b)) 
 		   {
-			System.out.println("Nieuwe bevinding");
+			System.out.println("Nieuwe bevinding aangemaakt");
 			returnvalue = "yes";
 		   }
 				
 		returnvalue = "yes";
-		driver.quit();
+		
+		
+		// READ ____________________________________________
+		
+		// Terugvinden van laatste issue - nu nog een sketchy oplossing (00000 en daarna hoogste nr ofwel laatste issue)...
+		driver.findElement(By.partialLinkText("00000")).click();
+
+		// Paginatitel als string variable opgeslagen
+		String title = driver.getTitle();
+
+		// Console-log van bovenstaande gegevens
+		System.out.println("Titel van pagina / bevinding = " + title);
+		
+		
+		// UPDATE ____________________________________________
+		
+		// Een update uitvoeren (bevinden ons reeds op issue-pagina) - notitie schrijven/achterlaten
+		driver.findElement(By.name("bugnote_text")).sendKeys("Message by Selenium: it's time to update this issue!");
+
+		// Notitie submitten
+		driver.findElement(By.cssSelector("input[value='Add Note']")).click();	
+		
+		// Naar beneden scrollen op pagina, 500px in dit geval
+		JavascriptExecutor javascript1 = (JavascriptExecutor) driver;
+		javascript1.executeScript("window.scrollBy(0,500)", "");
+		
+		
+		// DELETE ____________________________________________
+
+		// Issue verwijderen 1/2
+		driver.findElement(By.cssSelector("input[value='Delete']")).click();
+
+		// Issue verwijderen 2/2
+		driver.findElement(By.cssSelector("input[value='Delete Issues']")).click();	
+					
+		//driver.quit();
+		
 		return returnvalue;
+		
 	}
+	
 }
