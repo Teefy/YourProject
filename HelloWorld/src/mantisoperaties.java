@@ -90,6 +90,9 @@ public class mantisoperaties {
 		JavascriptExecutor javascript1 = (JavascriptExecutor) driver;
 		javascript1.executeScript("window.scrollBy(0,500)", "");
 		
+		// Console-bericht --> IF-verificatie toevoegen? 
+		System.out.println("Notitie aangemaakt / update uitgevoerd");
+		
 		
 		// DELETE ____________________________________________
 
@@ -98,6 +101,9 @@ public class mantisoperaties {
 
 		// Issue verwijderen 2/2
 		driver.findElement(By.cssSelector("input[value='Delete Issues']")).click();	
+		
+		// Console-bericht --> IF-verificatie toevoegen? 
+		System.out.println("Issue verwijderd");
 					
 		//driver.quit();
 		
