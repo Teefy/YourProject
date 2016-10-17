@@ -15,6 +15,12 @@ public class LoginPortal {
 		System.setProperty("webdriver.chrome.driver", "c://windows//chromedriver.exe");	
 		System.out.println(OsUtils.getOsName());
 		}
+		
+        if (OsUtils.getOsName().equals("Linux")) {
+            System.setProperty("webdriver.chrome.driver", "/home/youradministrator/eclipse/chromedriver");
+
+        } 
+		
 		else {
 			
 			 }
