@@ -80,13 +80,13 @@ public class mantisoperaties {
 		
 		// UPDATE ____________________________________________
 		
-		// Een update uitvoeren (bevinden ons reeds op issue-pagina) - notitie schrijven/achterlaten
+		// Een update uitvoeren (bevinden ons reeds op issue-pagina) --> notitie schrijven/achterlaten
 		driver.findElement(By.name("bugnote_text")).sendKeys("Message by Selenium: it's time to update this issue!");
 
-		// Notitie submitten
+		// Notitie toevoegen
 		driver.findElement(By.cssSelector("input[value='Add Note']")).click();	
 		
-		// Naar beneden scrollen op pagina, 500px in dit geval
+		// 500px naar beneden scrollen op pagina
 		JavascriptExecutor javascript1 = (JavascriptExecutor) driver;
 		javascript1.executeScript("window.scrollBy(0,500)", "");
 		
