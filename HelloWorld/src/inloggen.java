@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class inloggen {
 
 //extra comment
-	
+/*	
 public  WebDriver InternInloggen()
 	{
 		System.setProperty("webdriver.chrome.driver", "c://windows/chromedriver.exe");
@@ -17,4 +17,6 @@ public  WebDriver InternInloggen()
 		driver.findElement(By.name("op")).click();
 		return driver;
 	}
+	*/
+	
 } 

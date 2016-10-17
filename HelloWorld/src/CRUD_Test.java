@@ -1,12 +1,8 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.internal.thread.TestNGThread;
-
 import java.io.File;
 import java.io.IOException;
-
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
@@ -91,13 +87,13 @@ public class CRUD_Test {
 			
 			// Screenshot maken van huidige pagina en opslaan op locatie/bureaublad
 			File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-			FileUtils.copyFile(screenshot, new File("vul hier systeempad en naam + bestandstype (bijv: .png) in van screenshot"));
+		//	FileUtils.copyFile(screenshot, new File("vul hier systeempad en naam + bestandstype (bijv: .png) in van screenshot"));
 
 			// Console-log dat er een screenshot is genomen + locatie
 			System.out.print("Screenshot van ingevulde velden gemaakt en opgeslagen op Desktop (CREATE)");
 
 			// Wachten 5sec (tbv DEMO)
-			TestNGThread.sleep(5000);
+		//	TestNGThread.sleep(5000);
 			
 			// Issue submit
 			driver.findElement(By.cssSelector("input[value='Submit Report']")).click();	
@@ -105,7 +101,7 @@ public class CRUD_Test {
 			driver.findElement(By.linkText("View Issues")).click();
 			
 			// Wachten 3sec (tbv DEMO)
-			TestNGThread.sleep(3000);				
+		//	TestNGThread.sleep(3000);				
 			
 			// Issue bekijken
 			driver.findElement(By.linkText("0000009")).click();
@@ -116,19 +112,19 @@ public class CRUD_Test {
 			
 			// Screenshot maken van huidige pagina en opslaan op locatie/bureaublad
 			File screenshot2 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-			FileUtils.copyFile(screenshot2, new File("vul hier systeempad en naam + bestandstype in van screenshot"));
+		//	FileUtils.copyFile(screenshot2, new File("vul hier systeempad en naam + bestandstype in van screenshot"));
 
 			// Console-log dat er een screenshot is genomen + locatie
 			System.out.print("Screenshot van aangemaakt issue gemaakt en opgeslagen op Desktop (READ)");
 
 			// Wachten 5sec (tbv DEMO)
-			TestNGThread.sleep(5000);		
+	//		TestNGThread.sleep(5000);		
 						
 			// Een update uitvoeren - notitie schrijven/achterlaten
 			driver.findElement(By.name("bugnote_text")).sendKeys("Message by Selenium: it's time to update this issue!");
 
 			// Wachten 5sec (tbv DEMO)
-			TestNGThread.sleep(5000);		
+		//	TestNGThread.sleep(5000);		
 			
 			// Notitie submitten
 			driver.findElement(By.cssSelector("input[value='Add Note']")).click();	
@@ -140,24 +136,24 @@ public class CRUD_Test {
 			
 			// Screenshot maken van huidige pagina en opslaan op locatie/bureaublad
 			File screenshot3 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-			FileUtils.copyFile(screenshot3, new File("vul hier systeempad en naam + bestandstype in van screenshot"));
+		//	FileUtils.copyFile(screenshot3, new File("vul hier systeempad en naam + bestandstype in van screenshot"));
 
 			// Issue verwijderen
 			driver.findElement(By.cssSelector("input[value='Delete']")).click();	
 			
 			// Screenshot maken van huidige pagina en opslaan op locatie/bureaublad
 			File screenshot4 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-			FileUtils.copyFile(screenshot4, new File("vul hier systeempad en naam + bestandstype in van screenshot"));
+	//		FileUtils.copyFile(screenshot4, new File("vul hier systeempad en naam + bestandstype in van screenshot"));
 
 			// Wachten 3sec (tbv DEMO)
-			TestNGThread.sleep(3000);	
+		//	TestNGThread.sleep(3000);	
 			
 			// Issue verwijderen
 			driver.findElement(By.cssSelector("input[value='Delete Issues']")).click();	
 						
 			// Screenshot maken van huidige pagina en opslaan op locatie/bureaublad
 			File screenshot5 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-			FileUtils.copyFile(screenshot5, new File("vul hier systeempad en naam + bestandstype in van screenshot"));
+		//	FileUtils.copyFile(screenshot5, new File("vul hier systeempad en naam + bestandstype in van screenshot"));
 		}
 	}
 	
