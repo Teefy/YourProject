@@ -35,9 +35,9 @@ public class mantisoperaties {
 		
 		// Tekst invullen in 'normale' tekstvelden
 		driver.findElement(By.name("summary")).sendKeys("Selenium Issue Test");
-		driver.findElement(By.name("description")).sendKeys("Wanneer Ryan z'n hengel uitgooit wordt hij ineens (inclusief vis-attributen) uit een vliegtuig gegooid. Dit slaat natuurlijk nergens op. Vandaar een change-request.");
-		driver.findElement(By.name("steps_to_reproduce")).sendKeys("1. Laat Ryan een willekeurige visplek uitzoeken. 2. Laat Ryan z'n hengel uitgooien. 3. Kijk omhoog. 4. Ryan is ineens aan het skydiven.");
-		driver.findElement(By.name("additional_info")).sendKeys("Noot: Ryan is geen vliegende visser.");
+		driver.findElement(By.name("description")).sendKeys("Hier staat een beschrijving van de problemen en/of ongewenst gedrag.");
+		driver.findElement(By.name("steps_to_reproduce")).sendKeys("1. Dit is de eerste handeling. 2. Dit is de tweede handeling. 3. Dit is de derde handeling.");
+		driver.findElement(By.name("additional_info")).sendKeys("Noot: deze informatie kan hierbij nuttig zijn.");
 		
 		// Selecteren van item in dropdown
 		new Select(driver.findElement(By.name("custom_field_5"))).selectByVisibleText("testleader (Test Leader)"); 
@@ -75,7 +75,7 @@ public class mantisoperaties {
 		String title = driver.getTitle();
 
 		// Console-log van bovenstaande gegevens
-		System.out.println("Titel van pagina / bevinding = " + title);
+		System.out.println("Titel van aangemaakte bevinding (paginatitel) = " + title);
 		
 		
 		// UPDATE ____________________________________________
