@@ -11,12 +11,10 @@ public class HaalDriver {
 	{
 		if (OsUtils.getOsName().equals("Windows 10")) {
 			System.setProperty("webdriver.chrome.driver", "c://windows//chromedriver.exe");	
-			System.out.println(OsUtils.getOsName());
 			}
 			
 	    if (OsUtils.getOsName().equals("Linux")) {
 	        System.setProperty("webdriver.chrome.driver", "/home/youradministrator/eclipse/chromedriver");
-	        System.out.println(OsUtils.getOsName());
 	        } 
 
 	    WebDriver driver = new ChromeDriver();	
@@ -27,7 +25,6 @@ public class HaalDriver {
 		
 		if (OsUtils.getOsName().equals("Windows 10")) {
 			System.setProperty("webdriver.gecko.driver", "c://windows//geckodriver.exe");	
-			System.out.println(OsUtils.getOsName());
 			}
 		
 		if (OsUtils.getOsName().equals("Linux")) {
