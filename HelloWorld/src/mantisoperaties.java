@@ -1,4 +1,5 @@
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
@@ -9,13 +10,17 @@ import org.openqa.selenium.support.ui.Select;
 
 public class mantisoperaties {
 	
-	public String Nieuwebevinding() 
+	public String Nieuwebevinding(String Omgeving, String Rol, String Browser) 
 	{
 		LoginPortal PortalInloggen = new LoginPortal();
-		WebDriver driver = PortalInloggen.inloggen("PRO","testleader");
+		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
 		driver.manage().window().maximize(); 
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		driver.findElement(By.id("arrow-right-wrapper")).click();
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		driver.findElement(By.linkText("Issues")).click();
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+				
 		driver.findElement(By.linkText("Report Issue")).click();
 		
 		// Invul-sectie van velden en dropdowns

@@ -13,7 +13,7 @@ public class HelloWorldTest {
 	@Test
 	public void TC2() 
 	{
-		mantisoperaties Tc2 = new mantisoperaties();
-		assertEquals("yes", Tc2.Nieuwebevinding());
+	//	mantisoperaties Tc2 = new mantisoperaties();
+	//	assertEquals("yes", Tc2.Nieuwebevinding());
 	}
 }
