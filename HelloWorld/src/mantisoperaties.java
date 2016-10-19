@@ -1,5 +1,3 @@
-
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -7,21 +5,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 
 public class mantisoperaties {
-	
+
 	public String Nieuwebevinding(String Omgeving, String Rol, String Browser) 
 	{
 		LoginPortal PortalInloggen = new LoginPortal();
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
 		driver.manage().window().maximize(); 
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-
-		// Inloggen op [Omgeving=] "PRO" of "ACC" en [Rollen=] "softwaredeveloper", "testanalyst", "testleader", "softwaredeveloper", "projectmanager"
-		WebDriver driver = PortalInloggen.inloggen("PRO","testleader");
 		driver.findElement(By.id("arrow-right-wrapper")).click();
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		driver.findElement(By.linkText("Issues")).click();
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-				
 		driver.findElement(By.linkText("Report Issue")).click();
 		
 		// Invul-sectie van velden en dropdowns
@@ -67,51 +61,7 @@ public class mantisoperaties {
 			System.out.println("Nieuwe bevinding aangemaakt");
 			returnvalue = "yes";
 		   }
-				
-		returnvalue = "yes";
-		
-		
-		// READ ____________________________________________
-		
-		// Terugvinden van laatste issue - nu nog een sketchy oplossing (00000 en daarna hoogste nr ofwel laatste issue)...
-		driver.findElement(By.partialLinkText("00000")).click();
 
-		// Paginatitel als string variable opgeslagen
-		String title = driver.getTitle();
-
-		// Console-log van bovenstaande gegevens
-		System.out.println("Titel van aangemaakte bevinding (paginatitel) = " + title);
-		
-		
-		// UPDATE ____________________________________________
-		
-		// Een update uitvoeren (bevinden ons reeds op issue-pagina) --> notitie schrijven/achterlaten
-		driver.findElement(By.name("bugnote_text")).sendKeys("Message by Selenium: it's time to update this issue!");
-
-		// Notitie toevoegen
-		driver.findElement(By.cssSelector("input[value='Add Note']")).click();	
-		
-		// 500px naar beneden scrollen op pagina
-		JavascriptExecutor javascript1 = (JavascriptExecutor) driver;
-		javascript1.executeScript("window.scrollBy(0,500)", "");
-		
-		// Console-bericht --> IF-verificatie toevoegen? 
-		System.out.println("Notitie aangemaakt / update uitgevoerd");
-		
-		
-		// DELETE ____________________________________________
-
-		// Issue verwijderen 1/2
-		driver.findElement(By.cssSelector("input[value='Delete']")).click();
-
-		// Issue verwijderen 2/2
-		driver.findElement(By.cssSelector("input[value='Delete Issues']")).click();	
-		
-		// Console-bericht --> IF-verificatie toevoegen? 
-		System.out.println("Issue verwijderd");
-					
-		//driver.quit();
-		
 		return returnvalue;
 		
 	}
