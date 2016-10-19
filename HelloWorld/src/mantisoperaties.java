@@ -51,11 +51,13 @@ public class mantisoperaties {
 		
 		// Issue submit
 		driver.findElement(By.cssSelector("input[value='Submit Report']")).click();	
-			
+		
+		
+		
 		String a = driver.findElement(By.linkText("View Issues")).getText();
 		String b = "View Issues";
 		String returnvalue = null;
-		   
+		driver.quit();   
 		   if ((a).equals(b)) 
 		   {
 			System.out.println("Nieuwe bevinding aangemaakt");
@@ -63,6 +65,8 @@ public class mantisoperaties {
 		   }
 
 		return returnvalue;
+		
+
 		
 	}
 	
