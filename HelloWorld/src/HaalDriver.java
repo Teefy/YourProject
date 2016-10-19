@@ -1,7 +1,9 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.MarionetteDriver;
 
 public class HaalDriver {
 
@@ -16,11 +18,7 @@ public class HaalDriver {
 	        System.setProperty("webdriver.chrome.driver", "/home/youradministrator/eclipse/chromedriver");
 	        System.out.println(OsUtils.getOsName());
 	        } 
-			
-		else {
-				
-			 }
-	        
+
 	    WebDriver driver = new ChromeDriver();	
  		return driver;
 	}
@@ -33,11 +31,14 @@ public class HaalDriver {
 			}
 		
 		if (OsUtils.getOsName().equals("Linux")) {
-	        System.setProperty("webdriver.gecko.driver", "/home/youradministrator/eclipse/geckodriver");
-	        System.out.println(OsUtils.getOsName());
-	        } 
+			System.setProperty("webdriver.gecko.driver", "/home/youradministrator/eclipse/geckodriver");
+			 
+			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+			 
+			capabilities.setCapability("marionette", true);
+			}
 		
-		WebDriver driver = new FirefoxDriver();	
+		WebDriver driver = new MarionetteDriver();	
  		return driver;
 	
 	}
