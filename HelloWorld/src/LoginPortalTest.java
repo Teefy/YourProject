@@ -10,7 +10,7 @@ public class LoginPortalTest {
 		mantisoperaties Tc1 = new mantisoperaties();
 		assertEquals("yes", Tc1.Nieuwebevinding("PRO", "testanalyst", "Chrome"));
 	}
-	
+
 	@Test
 	public void TC2() 
 	{
