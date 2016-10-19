@@ -3,7 +3,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.MarionetteDriver;
 
 public class HaalDriver {
 
@@ -35,7 +34,7 @@ public class HaalDriver {
 			capabilities.setCapability("marionette", true);
 			}
 		
-		WebDriver driver = new MarionetteDriver();	
+		WebDriver driver = new FirefoxDriver();	
  		return driver;
 	
 	}

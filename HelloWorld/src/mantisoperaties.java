@@ -1,5 +1,4 @@
 import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
@@ -57,7 +56,10 @@ public class mantisoperaties {
 		String a = driver.findElement(By.linkText("View Issues")).getText();
 		String b = "View Issues";
 		String returnvalue = null;
+		
+		driver.close();  
 		driver.quit();   
+		
 		   if ((a).equals(b)) 
 		   {
 			System.out.println("Nieuwe bevinding aangemaakt");
