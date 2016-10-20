@@ -84,7 +84,27 @@ public class mantisoperaties {
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		driver.findElement(By.linkText("View Issues")).click();
 		
-		String s = driver.findElement(By.className("floatleft")).getText();
+		// 'nieuwe code' 
+
+		String actualTitle = driver.getTitle();
+		String expectedTitle = "View Issues - MantisBT";
+		String returnvalue = null;		
+
+		if ((actualTitle).equals(expectedTitle))
+		{ 
+			System.out.println("Bevindingen aan het bekijken | Paginatitel: View Issues - MantisBT");
+			returnvalue = "yes";
+		}
+			else 
+		{ 
+			System.out.println("Paginatitel komt niet overeen");
+		}
+		
+		return returnvalue;
+		
+		// 'oude code' 
+		
+		/* String s = driver.findElement(By.className("floatleft")).getText();
 		String a=s.substring(0,14);
 				
 		String b = "Viewing Issues";
@@ -98,6 +118,6 @@ public class mantisoperaties {
 		   }
 		return returnvalue;
 		
-		
+		*/
 	}
 }
