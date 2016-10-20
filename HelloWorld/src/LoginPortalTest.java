@@ -18,4 +18,17 @@ public class LoginPortalTest {
 		assertEquals("yes", Tc2.Nieuwebevinding("PRO", "testanalyst", "Firefox"));
 	}
 	
+	@Test
+	public void TC3()
+	
+	{
+		mantisoperaties Tc3 = new mantisoperaties();
+		assertEquals ("yes", Tc3.ViewBevindingen("PRO", "testanalyst" , "Chrome"));
+		
+		
+		
+	}
+	
+	
+	
 }

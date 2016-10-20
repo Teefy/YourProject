@@ -1,4 +1,6 @@
 import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.codec.binary.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
@@ -67,9 +69,35 @@ public class mantisoperaties {
 		   }
 
 		return returnvalue;
-		
-
-		
 	}
 	
+	public String ViewBevindingen(String Omgeving, String Rol, String Browser) {
+		
+		LoginPortal PortalInloggen = new LoginPortal();
+		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
+		driver.manage().window().maximize(); 
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.findElement(By.id("arrow-right-wrapper")).click();
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.findElement(By.linkText("Issues")).click();
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.findElement(By.linkText("View Issues")).click();
+		
+		String s = driver.findElement(By.className("floatleft")).getText();
+		String a=s.substring(0,14);
+				
+		String b = "Viewing Issues";
+		String returnvalue = null;
+		driver.quit();
+		
+		if ((a).equals(b)) 
+		   {
+			System.out.println("Bevindingen aan het bekijken");
+			returnvalue = "yes";
+		   }
+		return returnvalue;
+		
+		
+	}
 }
