@@ -1,0 +1,36 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class ReportIssueTest {
+
+	@Test
+	public void TC1() 
+	{
+		mantisoperaties Tc1 = new mantisoperaties();
+		assertEquals("yes", Tc1.Nieuwebevinding("PRO", "developer", "Chrome"));
+	}
+
+	@Test
+	public void TC2() 
+	{
+		mantisoperaties Tc2 = new mantisoperaties();
+		assertEquals("yes", Tc2.Nieuwebevinding("PRO", "testanalyst", "Firefox"));
+	}
+	
+	@Test
+	public void TC3()
+	
+	{
+		mantisoperaties Tc3 = new mantisoperaties();
+		assertEquals ("yes", Tc3.Nieuwebevinding("PRO", "testleader" , "Chrome"));	
+	}
+	
+	@Test
+	public void TC4()
+	
+	{
+		mantisoperaties Tc4 = new mantisoperaties();
+		assertEquals ("yes", Tc4.Nieuwebevinding("PRO", "projectmanager" , "Firefox"));	
+	}
+}

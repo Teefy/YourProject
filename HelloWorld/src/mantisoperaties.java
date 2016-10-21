@@ -34,8 +34,8 @@ public class mantisoperaties {
 		new Select(driver.findElement(By.name("handler_id"))).selectByVisibleText("testanalyst"); 
 		
 		// Tekst invullen in 'normale' tekstvelden
-		driver.findElement(By.name("summary")).sendKeys("Selenium Issue Test");
-		driver.findElement(By.name("description")).sendKeys("Hier staat een beschrijving van de problemen en/of ongewenst gedrag.");
+		driver.findElement(By.name("summary")).sendKeys("Bevinding aanmaken | Demo");
+		driver.findElement(By.name("description")).sendKeys("Hier staat een demostratieve beschrijving van het probleem en/of ongewenst gedrag.");
 		driver.findElement(By.name("steps_to_reproduce")).sendKeys("1. Dit is de eerste handeling. 2. Dit is de tweede handeling. 3. Dit is de derde handeling.");
 		driver.findElement(By.name("additional_info")).sendKeys("Noot: deze informatie kan hierbij nuttig zijn.");
 		
@@ -52,9 +52,7 @@ public class mantisoperaties {
 		
 		// Issue submit
 		driver.findElement(By.cssSelector("input[value='Submit Report']")).click();	
-		
-		
-		
+			
 		String a = driver.findElement(By.linkText("View Issues")).getText();
 		String b = "View Issues";
 		String returnvalue = null;
