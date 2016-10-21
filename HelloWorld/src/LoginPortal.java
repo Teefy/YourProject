@@ -47,7 +47,7 @@ public class LoginPortal {
 		  }
 		  
 		  if (Rol == "stakeholder") {
-			  driver.findElement(By.name("name")).sendKeys("softwaredeveloper");
+			  driver.findElement(By.name("name")).sendKeys("stakeholder");
 			  driver.findElement(By.name("pass")).sendKeys("cptYTP2016");
 		  }
 		  

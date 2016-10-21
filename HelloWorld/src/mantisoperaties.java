@@ -70,9 +70,7 @@ public class mantisoperaties {
 				System.out.println("Fail: geen nieuwe bevinding aangemaakt");
 		   }
 			
-		   
-
-		return returnvalue;
+		   return returnvalue;
 	}
 	
 	public String NieuwebevindingSH(String Omgeving, String Rol, String Browser) 
@@ -85,9 +83,9 @@ public class mantisoperaties {
 		driver.findElement(By.id("arrow-right-wrapper")).click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.findElement(By.linkText("Issues")).click();
-			
-		String a = driver.findElement(By.linkText("Report Issue")).getText();
-		String b = "Report Issue";
+
+		String a = driver.findElement(By.xpath("/html/body/table[1]/tbody/tr/td[3]/a")).getText();
+		String b = driver.findElement(By.xpath("/html/body/table[1]/tbody/tr/td[3]/a")).getText();
 		String returnvalue = null;
 		
 		driver.close();  
@@ -105,8 +103,9 @@ public class mantisoperaties {
 		   }
 			
 		   
-
 		return returnvalue;
+	
+		
 	}
 	
 	//___________________________________________________________________________________________________
@@ -130,6 +129,9 @@ public class mantisoperaties {
 		String actualTitle = driver.getTitle();
 		String expectedTitle = "View Issues - MantisBT";
 		String returnvalue = null;		
+		
+		driver.close();
+		driver.quit();
 
 		if ((actualTitle).equals(expectedTitle))
 		{ 
