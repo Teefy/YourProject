@@ -33,4 +33,13 @@ public class ReportIssueTest {
 		mantisoperaties Tc4 = new mantisoperaties();
 		assertEquals ("yes", Tc4.Nieuwebevinding("PRO", "projectmanager" , "Firefox"));	
 	}
+	
+	@Test
+	public void TC5()
+	// Deze TC checked of de Stakeholder GEEN issues kan aanmaken
+	{
+		mantisoperaties Tc5 = new mantisoperaties();
+		assertEquals ("no", Tc5.NieuwebevindingSH("PRO", "stakeholder" , "Chrome"));	
+	}
+	
 }

@@ -1,6 +1,5 @@
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.codec.binary.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
@@ -12,15 +11,15 @@ public class mantisoperaties {
 		LoginPortal PortalInloggen = new LoginPortal();
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
 		driver.manage().window().maximize(); 
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.findElement(By.id("arrow-right-wrapper")).click();
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.findElement(By.linkText("Issues")).click();
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.findElement(By.linkText("Report Issue")).click();
 		
 		// Invul-sectie van velden en dropdowns
-		new Select(driver.findElement(By.name("category_id"))).selectByVisibleText("Question"); 
+		new Select(driver.findElement(By.name("category_id"))).selectByVisibleText("Issue"); 
 		new Select(driver.findElement(By.name("reproducibility"))).selectByVisibleText("random"); 
 		new Select(driver.findElement(By.name("severity"))).selectByVisibleText("Low"); 
 		new Select(driver.findElement(By.name("priority"))).selectByVisibleText("Medium"); 
@@ -41,7 +40,7 @@ public class mantisoperaties {
 		
 		// Selecteren van item in dropdown
 		new Select(driver.findElement(By.name("custom_field_5"))).selectByVisibleText("testleader (Test Leader)"); 
-		new Select(driver.findElement(By.name("custom_field_1"))).selectByVisibleText("OAT"); 
+		new Select(driver.findElement(By.name("custom_field_1"))).selectByVisibleText("ST"); 
 		
 		// Bestand en/of bijlage toevoegen - op deze manier werkt het zonder systeem-venster
 		//driver.findElement(By.id("ufile[]")).sendKeys("vul hier systeempad en naam in van bijlage");
@@ -62,12 +61,56 @@ public class mantisoperaties {
 		
 		   if ((a).equals(b)) 
 		   {
-			System.out.println("Nieuwe bevinding aangemaakt");
+			System.out.println("Geslaagd: nieuwe bevinding aangemaakt");
 			returnvalue = "yes";
 		   }
+		   
+		   else 
+		   { 
+				System.out.println("Fail: geen nieuwe bevinding aangemaakt");
+		   }
+			
+		   
 
 		return returnvalue;
 	}
+	
+	public String NieuwebevindingSH(String Omgeving, String Rol, String Browser) 
+	{
+		LoginPortal PortalInloggen = new LoginPortal();
+		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
+		driver.manage().window().maximize(); 
+
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.findElement(By.id("arrow-right-wrapper")).click();
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.findElement(By.linkText("Issues")).click();
+			
+		String a = driver.findElement(By.linkText("Report Issue")).getText();
+		String b = "Report Issue";
+		String returnvalue = null;
+		
+		driver.close();  
+		driver.quit();   
+		
+		   if ((a).equals(b)) 
+		   {
+			System.out.println("Geslaagd: PM kan geen bevinding aanmaken");
+			returnvalue = "no";
+		   }
+		   
+		   else 
+		   { 
+				System.out.println("Fail: PM kan wel bevinding aanmaken");
+		   }
+			
+		   
+
+		return returnvalue;
+	}
+	
+	//___________________________________________________________________________________________________
+	
 	
 	public String ViewBevindingen(String Omgeving, String Rol, String Browser) {
 		
@@ -118,4 +161,5 @@ public class mantisoperaties {
 		
 		*/
 	}
+
 }
