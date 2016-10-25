@@ -7,26 +7,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class LoginPortal {
 		
-		public WebDriver inloggen(String Omgeving, String Rol) {
-			
+		public WebDriver inloggen(String Omgeving, String Rol, String Browser) {
+		
 		String InlogUrl = null;
-			 
-		if (OsUtils.getOsName().equals("Windows 10")) {
-		System.setProperty("webdriver.chrome.driver", "c://windows//chromedriver.exe");	
-		System.out.println(OsUtils.getOsName());
-		}
-		
-        if (OsUtils.getOsName().equals("Linux")) {
-            System.setProperty("webdriver.chrome.driver", "/home/youradministrator/eclipse/chromedriver");
-            System.out.println(OsUtils.getOsName());
-        } 
-		
-		else {
-			
-			 }
-		
-		  WebDriver driver = new ChromeDriver();
-		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				
+		WebDriver driver = AanroepDriver.roepdriver(Browser);
+				
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		  
 		  // Variablen van productie- en acceptatieomgeving
 		  if (Omgeving == "ACC") {
@@ -39,9 +26,6 @@ public class LoginPortal {
 		  
 		  // Url  aan de hand van opgegeven ACC of PRO variable
 		  driver.get(InlogUrl);
-		  
-		  // Formaat browser aanpassen
-		 // driver.manage().window().setSize(new Dimension(1280, 820));
 		  
 		  // Maximaal formaat browservenster
 		   driver.manage().window().maximize(); 
@@ -63,7 +47,7 @@ public class LoginPortal {
 		  }
 		  
 		  if (Rol == "stakeholder") {
-			  driver.findElement(By.name("name")).sendKeys("softwaredeveloper");
+			  driver.findElement(By.name("name")).sendKeys("stakeholder");
 			  driver.findElement(By.name("pass")).sendKeys("cptYTP2016");
 		  }
 		  
