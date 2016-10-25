@@ -134,7 +134,6 @@ public class mantisoperaties {
 		driver.findElement(By.linkText("View Issues")).click();
 		
 		
-		
 		// 'nieuwe code' 
 
 		String actualTitle = driver.getTitle();
