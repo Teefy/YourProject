@@ -102,13 +102,13 @@ public class mantisoperaties {
 		
 		   if ((a).equals(b)) 
 		   {
-			System.out.println("Geslaagd: PM kan geen bevinding aanmaken");
+			System.out.println("Geslaagd: userrol komt overeen (zie boven)");
 			returnvalue = "no";
 		   }
 		   
 		   else 
 		   { 
-				System.out.println("Fail: PM kan wel bevinding aanmaken");
+				System.out.println("Fail: userrol komt niet overeen (zie boven)");
 		   }
 			
 		   
