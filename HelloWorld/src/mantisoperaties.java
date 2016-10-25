@@ -2,6 +2,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class mantisoperaties {
@@ -56,8 +57,8 @@ public class mantisoperaties {
 		String b = "View Issues";
 		String returnvalue = null;
 		
-		driver.close();  
-		driver.quit();   
+		//driver.close();  
+		//driver.quit();   
 		
 		   if ((a).equals(b)) 
 		   {
@@ -72,7 +73,9 @@ public class mantisoperaties {
 			
 		   return returnvalue;
 	}
-	
+
+	//___________________________________________________________________________________________________
+
 	public String NieuwebevindingSH(String Omgeving, String Rol, String Browser) 
 	{
 		LoginPortal PortalInloggen = new LoginPortal();
@@ -82,10 +85,16 @@ public class mantisoperaties {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.findElement(By.id("arrow-right-wrapper")).click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.findElement(By.linkText("Issues")).click();
-
-		String a = driver.findElement(By.xpath("/html/body/table[1]/tbody/tr/td[3]/a")).getText();
-		String b = driver.findElement(By.xpath("/html/body/table[1]/tbody/tr/td[3]/a")).getText();
+		
+		// Eindelijk userrol te pakken, zie onderstaande script
+		
+		WebElement userRol = driver.findElement(By.className("username"));
+		System.out.println("Rol: " + userRol.getText());
+		
+		// 
+		
+		String a = "stakeholder";
+		String b = driver.findElement(By.className("username")).getText();
 		String returnvalue = null;
 		
 		driver.close();  
@@ -124,6 +133,8 @@ public class mantisoperaties {
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		driver.findElement(By.linkText("View Issues")).click();
 		
+		
+		
 		// 'nieuwe code' 
 
 		String actualTitle = driver.getTitle();
@@ -145,23 +156,5 @@ public class mantisoperaties {
 		
 		return returnvalue;
 		
-		// 'oude code' 
-		
-		/* String s = driver.findElement(By.className("floatleft")).getText();
-		String a=s.substring(0,14);
-				
-		String b = "Viewing Issues";
-		String returnvalue = null;
-		driver.quit();
-		
-		if ((a).equals(b)) 
-		   {
-			System.out.println("Bevindingen aan het bekijken");
-			returnvalue = "yes";
-		   }
-		return returnvalue;
-		
-		*/
 	}
-
 }
