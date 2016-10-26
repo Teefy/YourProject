@@ -1,8 +1,8 @@
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class mantisoperaties {
@@ -87,11 +87,13 @@ public class mantisoperaties {
 		driver.findElement(By.id("arrow-right-wrapper")).click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		
-		// Eindelijk userrol te pakken, zie onderstaande script
+		// Verificatie van userrol in html
 		
 		System.out.println("Rol: " + driver.findElement(By.className("username")).getText());
 		
-		String a = "stakeholder";
+		// Verificatie van userrol --> string Rol vs html
+		
+		String a = "stakeholder"; // maar kan ook string Rol invullen = generieker
 		String b = driver.findElement(By.className("username")).getText();
 		String returnvalue = null;
 		
@@ -155,22 +157,25 @@ public class mantisoperaties {
 	}
 
 
-//___________________________________________________________________________________________________
+	//___________________________________________________________________________________________________
 
 	
 	public String inlogError(String Omgeving, String Rol, String Browser) 
 	{
 		LoginPortal PortalInloggen = new LoginPortal();
 		WebDriver driver = PortalInloggen.inloggenError(Omgeving,Rol,Browser);
-		driver.manage().window().maximize(); 
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		
+		driver.manage().window().setSize(new Dimension(1280, 920));
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-		// Eindelijk userrol te pakken, zie onderstaande script
+		// Verificatie van foutmelding incl. substring waarbinnen de foutmelding staat
 		
-		System.out.println("Error bericht: " + driver.findElement(By.id("information")).getText());
+		System.out.println("Foutmelding: " + driver.findElement(By.id("information")).getText().substring(14,55));
 		
-		String a = "Error message Sorry, unrecognized username or password. Have you forgotten your password? You are here Home";
-		String b = driver.findElement(By.id("information")).getText();
+		// Foutmelding te pakken middels substring (classes zitten namelijk verstopt achter hoofd-id)
+		
+		String a = "Sorry, unrecognized username or password.";
+		String b = driver.findElement(By.id("information")).getText().substring(14,55);
 		String returnvalue = null;
 		
 		driver.close();  
@@ -178,13 +183,13 @@ public class mantisoperaties {
 		
 		   if ((a).equals(b)) 
 		   {
-			System.out.println("Geslaagd: error message zichtbaar");
+			System.out.println("Geslaagd: juiste foutmelding");
 			returnvalue = "yes";
 		   }
 		   
 		   else 
 		   { 
-				System.out.println("Fail: error message niet zichtbaar");
+			System.out.println("Fail: onjuiste foutmelding");
 		   }
 			
 		   
