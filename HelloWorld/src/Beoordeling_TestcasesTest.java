@@ -70,7 +70,8 @@ public class Beoordeling_TestcasesTest {
 		Beoordeling_Testcases TC10 = new Beoordeling_Testcases();
 		assertEquals ( "true", TC10.correctinloggen("PRO", "projectmanager", "Firefox"));
 	}
-	@Test
+	 
+	/* @Test
 	public void TC11() {
 		
 		Beoordeling_Testcases TC11 = new Beoordeling_Testcases();
@@ -135,4 +136,5 @@ public class Beoordeling_TestcasesTest {
 		Beoordeling_Testcases TC20 = new Beoordeling_Testcases();
 		assertEquals ( "true", TC20.correctinloggen("ACC", "projectmanager", "Firefox"));
 	}
+	*/
 }
