@@ -2,6 +2,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class mantisoperaties {
@@ -70,11 +71,12 @@ public class mantisoperaties {
 				System.out.println("Fail: geen nieuwe bevinding aangemaakt");
 		   }
 			
-		   
-
-		return returnvalue;
+		   return returnvalue;
 	}
-	
+
+	//___________________________________________________________________________________________________
+
+
 	public String NieuwebevindingSH(String Omgeving, String Rol, String Browser) 
 	{
 		LoginPortal PortalInloggen = new LoginPortal();
@@ -84,10 +86,13 @@ public class mantisoperaties {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.findElement(By.id("arrow-right-wrapper")).click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.findElement(By.linkText("Issues")).click();
-			
-		String a = driver.findElement(By.linkText("Report Issue")).getText();
-		String b = "Report Issue";
+		
+		// Eindelijk userrol te pakken, zie onderstaande script
+		
+		System.out.println("Rol: " + driver.findElement(By.className("username")).getText());
+		
+		String a = "stakeholder";
+		String b = driver.findElement(By.className("username")).getText();
 		String returnvalue = null;
 		
 		driver.close();  
@@ -95,18 +100,19 @@ public class mantisoperaties {
 		
 		   if ((a).equals(b)) 
 		   {
-			System.out.println("Geslaagd: PM kan geen bevinding aanmaken");
-			returnvalue = "no";
+			System.out.println("Geslaagd: userrol komt overeen (zie boven)");
+			returnvalue = "yes";
 		   }
 		   
 		   else 
 		   { 
-				System.out.println("Fail: PM kan wel bevinding aanmaken");
+				System.out.println("Fail: userrol komt niet overeen (zie boven)");
 		   }
 			
 		   
-
 		return returnvalue;
+	
+		
 	}
 	
 	//___________________________________________________________________________________________________
@@ -130,6 +136,9 @@ public class mantisoperaties {
 		String actualTitle = driver.getTitle();
 		String expectedTitle = "View Issues - MantisBT";
 		String returnvalue = null;		
+		
+		driver.close();
+		driver.quit();
 
 		if ((actualTitle).equals(expectedTitle))
 		{ 
@@ -143,23 +152,45 @@ public class mantisoperaties {
 		
 		return returnvalue;
 		
-		// 'oude code' 
-		
-		/* String s = driver.findElement(By.className("floatleft")).getText();
-		String a=s.substring(0,14);
-				
-		String b = "Viewing Issues";
-		String returnvalue = null;
-		driver.quit();
-		
-		if ((a).equals(b)) 
-		   {
-			System.out.println("Bevindingen aan het bekijken");
-			returnvalue = "yes";
-		   }
-		return returnvalue;
-		
-		*/
 	}
 
+
+//___________________________________________________________________________________________________
+
+	
+	public String inlogError(String Omgeving, String Rol, String Browser) 
+	{
+		LoginPortal PortalInloggen = new LoginPortal();
+		WebDriver driver = PortalInloggen.inloggenError(Omgeving,Rol,Browser);
+		driver.manage().window().maximize(); 
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+		// Eindelijk userrol te pakken, zie onderstaande script
+		
+		System.out.println("Error bericht: " + driver.findElement(By.id("information")).getText());
+		
+		String a = "Error message Sorry, unrecognized username or password. Have you forgotten your password? You are here Home";
+		String b = driver.findElement(By.id("information")).getText();
+		String returnvalue = null;
+		
+		driver.close();  
+		driver.quit();   
+		
+		   if ((a).equals(b)) 
+		   {
+			System.out.println("Geslaagd: error message zichtbaar");
+			returnvalue = "yes";
+		   }
+		   
+		   else 
+		   { 
+				System.out.println("Fail: error message niet zichtbaar");
+		   }
+			
+		   
+		return returnvalue;
+	
+		
+	}
+	
 }
