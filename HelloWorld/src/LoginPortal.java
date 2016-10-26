@@ -47,7 +47,7 @@ public class LoginPortal {
 		  }
 		  
 		  if (Rol == "stakeholder") {
-			  driver.findElement(By.name("name")).sendKeys("softwaredeveloper");
+			  driver.findElement(By.name("name")).sendKeys("stakeholder");
 			  driver.findElement(By.name("pass")).sendKeys("cptYTP2016");
 		  }
 		  
@@ -55,7 +55,12 @@ public class LoginPortal {
 			  driver.findElement(By.name("name")).sendKeys("projectmanager");
 			  driver.findElement(By.name("pass")).sendKeys("cptYTP2016");
 		  }
-		   
+		  
+		  if (Rol == "testleader-error") {
+			  driver.findElement(By.name("name")).sendKeys("aap");
+			  driver.findElement(By.name("pass")).sendKeys("bullcrap");
+		  }
+		  
 		  // Inloggen - submit button
 		  driver.findElement(By.name("op")).click();
 				  
@@ -77,6 +82,49 @@ public class LoginPortal {
 		  //driver.close();
 		  		  
 		 }
+		
+//___________________________________________________________________________________________________
+	
+		
+				
+		public WebDriver inloggenError(String Omgeving, String Rol, String Browser) {
+			
+			String InlogUrl = null;
+					
+			WebDriver driver = AanroepDriver.roepdriver(Browser);
+					
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			  
+			  // Variablen van productie- en acceptatieomgeving
+			  if (Omgeving == "ACC") {
+			  	   InlogUrl = "http://accept.yourtestprojects.com/";
+			  }
+			  
+			  if (Omgeving == "PRO") {
+				  InlogUrl = "http://www.yourtestprojects.com/";
+			  }
+			  
+			  // Url  aan de hand van opgegeven ACC of PRO variable
+			  driver.get(InlogUrl);
+			  
+			  // Maximaal formaat browservenster
+			   driver.manage().window().maximize(); 
+			  
+			  // Variablen van diverse users/rollen
+			  
+			  if (Rol == "testleader-error") {
+				  driver.findElement(By.name("name")).sendKeys("aap");
+				  driver.findElement(By.name("pass")).sendKeys("bullcrap");
+			  }
+			  
+			  // Inloggen - submit button
+			  driver.findElement(By.name("op")).click();
+					  
+		
+			  return driver;
+			  //driver.close();
+			  		  
+			 }
 
 }
 

@@ -17,5 +17,22 @@ public class LoginPortalTest {
 		mantisoperaties Tc2 = new mantisoperaties();
 		assertEquals("yes", Tc2.Nieuwebevinding("PRO", "testanalyst", "Firefox"));
 	}
+<<<<<<< HEAD
 	*/
+=======
+	
+	@Test
+	public void TC3()
+	
+	{
+		mantisoperaties Tc3 = new mantisoperaties();
+		assertEquals ("yes", Tc3.ViewBevindingen("PRO", "testanalyst" , "Chrome"));
+		
+		
+		
+	}
+	
+	
+	
+>>>>>>> branch 'master' of https://github.com/Teefy/YourProject
 }
