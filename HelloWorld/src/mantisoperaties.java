@@ -57,8 +57,8 @@ public class mantisoperaties {
 		String b = "View Issues";
 		String returnvalue = null;
 		
-		//driver.close();  
-		//driver.quit();   
+		driver.close();  
+		driver.quit();   
 		
 		   if ((a).equals(b)) 
 		   {
@@ -76,6 +76,7 @@ public class mantisoperaties {
 
 	//___________________________________________________________________________________________________
 
+
 	public String NieuwebevindingSH(String Omgeving, String Rol, String Browser) 
 	{
 		LoginPortal PortalInloggen = new LoginPortal();
@@ -88,10 +89,7 @@ public class mantisoperaties {
 		
 		// Eindelijk userrol te pakken, zie onderstaande script
 		
-		WebElement userRol = driver.findElement(By.className("username"));
-		System.out.println("Rol: " + userRol.getText());
-		
-		// 
+		System.out.println("Rol: " + driver.findElement(By.className("username")).getText());
 		
 		String a = "stakeholder";
 		String b = driver.findElement(By.className("username")).getText();
@@ -103,7 +101,7 @@ public class mantisoperaties {
 		   if ((a).equals(b)) 
 		   {
 			System.out.println("Geslaagd: userrol komt overeen (zie boven)");
-			returnvalue = "no";
+			returnvalue = "yes";
 		   }
 		   
 		   else 
@@ -133,8 +131,6 @@ public class mantisoperaties {
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		driver.findElement(By.linkText("View Issues")).click();
 		
-		
-		
 		// 'nieuwe code' 
 
 		String actualTitle = driver.getTitle();
@@ -157,4 +153,44 @@ public class mantisoperaties {
 		return returnvalue;
 		
 	}
+
+
+//___________________________________________________________________________________________________
+
+	
+	public String inlogError(String Omgeving, String Rol, String Browser) 
+	{
+		LoginPortal PortalInloggen = new LoginPortal();
+		WebDriver driver = PortalInloggen.inloggenError(Omgeving,Rol,Browser);
+		driver.manage().window().maximize(); 
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+		// Eindelijk userrol te pakken, zie onderstaande script
+		
+		System.out.println("Error bericht: " + driver.findElement(By.id("information")).getText());
+		
+		String a = "Error message Sorry, unrecognized username or password. Have you forgotten your password? You are here Home";
+		String b = driver.findElement(By.id("information")).getText();
+		String returnvalue = null;
+		
+		driver.close();  
+		driver.quit();   
+		
+		   if ((a).equals(b)) 
+		   {
+			System.out.println("Geslaagd: error message zichtbaar");
+			returnvalue = "yes";
+		   }
+		   
+		   else 
+		   { 
+				System.out.println("Fail: error message niet zichtbaar");
+		   }
+			
+		   
+		return returnvalue;
+	
+		
+	}
+	
 }
