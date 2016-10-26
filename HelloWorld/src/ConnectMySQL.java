@@ -22,7 +22,7 @@ public class ConnectMySQL {
 		connection();
 		String resultaat = null;
 
-		String host = "jdbc:mysql://127.0.0.1:3306/yourdb";
+		String host = "jdbc:mysql://Derp:3306/yourdb";
 		String username = "Your";
 		String password = "Your";
 
