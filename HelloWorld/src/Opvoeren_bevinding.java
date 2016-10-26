@@ -18,7 +18,7 @@ public class Opvoeren_bevinding {
 		driver.findElement(By.linkText("Issues")).click();
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		driver.findElement(By.linkText("Report Issue")).click();
-		System.out.println(By)
+
 		// voer reportdetails in
 		
 		new Select(driver.findElement(By.name("category_id"))).selectByVisibleText("Issue");
