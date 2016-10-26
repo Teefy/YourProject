@@ -181,8 +181,8 @@ public class Inloggen_CPT {
 	//-----------------------------------------------------------------------------------------------------
 		public String Inloggen06(String Omgeving, String Rol, String Browser) 
 		{
-			LoginPortal PortalInloggen = new LoginPortal();
-			WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
+			Alleen_inloggen PortalInloggen = new Alleen_inloggen();
+			WebDriver driver = Alleen_inloggen.inloggen(Omgeving,Rol,Browser);
 			driver.manage().window().maximize(); 
 			
 					//Vind geschreven tekst in element voor de foutcode
