@@ -39,7 +39,16 @@ public class ReportIssueTest {
 	// Deze TC checked of de Stakeholder GEEN issues kan aanmaken
 	{
 		mantisoperaties Tc5 = new mantisoperaties();
-		assertEquals ("no", Tc5.NieuwebevindingSH("PRO", "stakeholder" , "Chrome"));	
+		assertEquals ("yes", Tc5.NieuwebevindingSH("PRO", "stakeholder" , "Chrome"));	
 	}
+	
+	@Test
+	public void TC6()
+	// Deze TC checked of juiste inlog-error verschijnt
+	{
+		mantisoperaties Tc6 = new mantisoperaties();
+		assertEquals ("yes", Tc6.inlogError("PRO", "testleader-error" , "Chrome"));	
+	}
+	
 	
 }
