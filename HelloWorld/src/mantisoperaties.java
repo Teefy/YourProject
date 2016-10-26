@@ -167,10 +167,10 @@ public class mantisoperaties {
 
 		// Eindelijk userrol te pakken, zie onderstaande script
 		
-		System.out.println("Error bericht: " + driver.findElement(By.id("information")).getText());
+		System.out.println("Foutmelding: " + driver.findElement(By.id("information")).getText().substring(14,55));
 		
-		String a = "Error message Sorry, unrecognized username or password. Have you forgotten your password? You are here Home";
-		String b = driver.findElement(By.id("information")).getText();
+		String a = "Sorry, unrecognized username or password.";
+		String b = driver.findElement(By.id("information")).getText().substring(14,55);
 		String returnvalue = null;
 		
 		driver.close();  
@@ -178,13 +178,13 @@ public class mantisoperaties {
 		
 		   if ((a).equals(b)) 
 		   {
-			System.out.println("Geslaagd: error message zichtbaar");
+			System.out.println("Geslaagd: juiste foutmelding");
 			returnvalue = "yes";
 		   }
 		   
 		   else 
 		   { 
-				System.out.println("Fail: error message niet zichtbaar");
+				System.out.println("Fail: onjuiste foutmelding");
 		   }
 			
 		   
