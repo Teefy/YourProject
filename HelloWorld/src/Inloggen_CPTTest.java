@@ -39,4 +39,11 @@ public class Inloggen_CPTTest {
 		assertEquals("no", TC5.Inloggen05("PRO", "testanalyst", "Chrome"));
 	}
 	
+	@Test
+	public void TC6() 
+	{
+		Inloggen_CPT TC6 = new Inloggen_CPT();
+		assertEquals("no", TC6.Inloggen06("PRO", "testleader-error", "Chrome"));
+	}
+	
 }

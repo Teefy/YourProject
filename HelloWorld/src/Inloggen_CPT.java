@@ -178,5 +178,38 @@ public class Inloggen_CPT {
 	return returnvalue;
 	
 	}
+	//-----------------------------------------------------------------------------------------------------
+		public String Inloggen06(String Omgeving, String Rol, String Browser) 
+		{
+			LoginPortal PortalInloggen = new LoginPortal();
+			WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
+			driver.manage().window().maximize(); 
+			
+					//Vind geschreven tekst in element voor de foutcode
+			WebElement validatie = driver.findElement(By.id("information")) ;
+			System.out.println("Validatie:  " + validatie.getText());
+			
+			String actualrole = driver.findElement(By.id("information")).getText();
+			String expectedRole = "Sorry, unrecognized username or password.";
+			String returnvalue = null;
+			
+			driver.close();  
+			driver.quit(); 
+			
+			if ((actualrole).equals (expectedRole))
+			{
+				System.out.println("Validatie: Sorry, unrecognized username or password. ");
+			returnvalue = "no";
+		   }
+		   
+		   else 
+		   { 
+				System.out.println("Login geslaagd");
+		   }
+			
+		   
+		return returnvalue;
+		
+		}
 }
 
