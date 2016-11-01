@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.codec.binary.StringUtils;
@@ -47,9 +48,18 @@ public class Rapportage {
 		 driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		 
 		 driver.quit ();
+		
+		
+		File f = new File("C:/Users/dennis/Downloads/test (1).doc");
+		if(f.exists()){
+		    System.out.println("success");
+		}
+		else{
+		    System.out.println("fail");
+		    
+		    
+		}
 		return null ;
-		
-		
 }
 
 //--------------------------------------------------------------------------------------------------
