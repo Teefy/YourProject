@@ -23,9 +23,9 @@ public class ConnectMySQL {
 		connection();
 		String[] resultaat = null;
 
-		String host = "jdbc:mysql://192.168.50.163:3306/yourdb";
-		String username = "Your";
-		String password = "Your";
+		String host = "jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7142868";
+		String username = "sql7142868";
+		String password = "4gBABrRN3x";
 
 		try {
 			Connection connect = DriverManager.getConnection(host, username,
