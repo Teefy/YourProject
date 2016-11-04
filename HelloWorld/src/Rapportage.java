@@ -45,20 +45,20 @@ public class Rapportage {
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		// Klik op het Word icoontje linksboven
 		 driver.findElement(By.xpath("/html/body/form[1]/table/tbody/tr/td/a[1]/img")).click();
-		 driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		 driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
 		 
 		 driver.quit ();
 		
+		 File f = new File("C:/Users/dennis/Downloads/test (1).doc");
+			if(f.exists()){
+			    System.out.println("success");
+			}
+			else{
+			    System.out.println("fail");
+			    
+			    
+			}
 		
-		File f = new File("C:/Users/dennis/Downloads/test (1).doc");
-		if(f.exists()){
-		    System.out.println("success");
-		}
-		else{
-		    System.out.println("fail");
-		    
-		    
-		}
 		return null ;
 }
 
