@@ -3,7 +3,11 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+
+import pageObjects.Mantisobjecten;
+
 
 public class mantisops_db {
 
@@ -23,29 +27,34 @@ public class mantisops_db {
 		String[] connectionToMySql = ConnectMySQL.ConnectionToMySql("select * from tbl_bevinding where bevinding_id =" + BevId);	
 		
 		// Invul-sectie van velden en dropdowns
-		new Select(driver.findElement(By.name("category_id"))).selectByVisibleText(connectionToMySql[1]); 
-		new Select(driver.findElement(By.name("reproducibility"))).selectByVisibleText(connectionToMySql[2]); 
-		new Select(driver.findElement(By.name("severity"))).selectByVisibleText(connectionToMySql[3]); 
-		new Select(driver.findElement(By.name("priority"))).selectByVisibleText(connectionToMySql[4]); 
+		
+		new Select(pageObjects.Mantisobjecten.DropDown_category(driver)).selectByVisibleText(connectionToMySql[1]);
+		new Select(pageObjects.Mantisobjecten.DropDown_reproducibility(driver)).selectByVisibleText(connectionToMySql[2]); 
+		new Select(pageObjects.Mantisobjecten.DropDown_severity(driver)).selectByVisibleText(connectionToMySql[3]); 
+		new Select(pageObjects.Mantisobjecten.DropDown_priority(driver)).selectByVisibleText(connectionToMySql[4]); 
 		
 		// Tekst invullen in 'normale' tekstvelden
-		driver.findElement(By.name("platform")).sendKeys(connectionToMySql[5]);
-		driver.findElement(By.name("os")).sendKeys(connectionToMySql[6]);
-		driver.findElement(By.name("os_build")).sendKeys(connectionToMySql[7]);
-			
+		
+		pageObjects.Mantisobjecten.text_platform(driver).sendKeys(connectionToMySql[5]);
+		pageObjects.Mantisobjecten.text_os(driver).sendKeys(connectionToMySql[6]);
+		pageObjects.Mantisobjecten.text_os_build(driver).sendKeys(connectionToMySql[7]);
+				
 		// Selecteren van item in dropdown 
-		new Select(driver.findElement(By.name("handler_id"))).selectByVisibleText(connectionToMySql[8]); 
 		
+		new Select(pageObjects.Mantisobjecten.DropDown_handler_id(driver)).selectByVisibleText(connectionToMySql[8]); 
+				
 		// Tekst invullen in 'normale' tekstvelden
-		driver.findElement(By.name("summary")).sendKeys(connectionToMySql[9]);
-		driver.findElement(By.name("description")).sendKeys(connectionToMySql[10]);
-		driver.findElement(By.name("steps_to_reproduce")).sendKeys(connectionToMySql[11]);
-		driver.findElement(By.name("additional_info")).sendKeys(connectionToMySql[12]);
 		
+		pageObjects.Mantisobjecten.text_summary(driver).sendKeys(connectionToMySql[9]);
+		pageObjects.Mantisobjecten.text_description(driver).sendKeys(connectionToMySql[10]);
+		pageObjects.Mantisobjecten.text_steps_to_reproduce(driver).sendKeys(connectionToMySql[11]);
+		pageObjects.Mantisobjecten.text_additional_info(driver).sendKeys(connectionToMySql[12]);
+	
 		// Selecteren van item in dropdown
-		new Select(driver.findElement(By.name("custom_field_5"))).selectByVisibleText(connectionToMySql[13]); 
-		new Select(driver.findElement(By.name("custom_field_1"))).selectByVisibleText(connectionToMySql[14]); 
 		
+		new Select(pageObjects.Mantisobjecten.DropDown_custom_field_5(driver)).selectByVisibleText(connectionToMySql[13]);
+		new Select(pageObjects.Mantisobjecten.DropDown_custom_field_1(driver)).selectByVisibleText(connectionToMySql[14]);
+				
 		// Bestand en/of bijlage toevoegen - op deze manier werkt het zonder systeem-venster
 		//driver.findElement(By.id("ufile[]")).sendKeys("vul hier systeempad en naam in van bijlage");
 		
