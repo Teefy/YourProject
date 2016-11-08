@@ -1,30 +1,30 @@
+package testuitvoer;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import codebase.mantisops_db;
 
 public class LoginPortalTest {
 
 	@Test
 	public void TC1() 
 	{
-		mantisoperaties Tc1 = new mantisoperaties();
-		assertEquals("yes", Tc1.Nieuwebevinding("PRO", "testanalyst", "Chrome"));
+		mantisops_db Tc1 = new mantisops_db();
+		assertEquals("yes", Tc1.ReportIssue("PRO", "testanalyst", "Chrome", "1"));
 	}
 	
 	@Test
 	public void TC2() 
 	{
-		mantisoperaties Tc2 = new mantisoperaties();
-		assertEquals("yes", Tc2.Nieuwebevinding("PRO", "testanalyst", "Firefox"));
+		mantisops_db Tc2 = new mantisops_db();
+		assertEquals("yes", Tc2.ReportIssue("PRO", "testanalyst", "Firefox", "1"));
 	}
 	
 	@Test
 	public void TC3()
 	{
-		mantisoperaties Tc3 = new mantisoperaties();
-		assertEquals ("yes", Tc3.ViewBevindingen("PRO", "testanalyst" , "Chrome"));
-		
-		
-		
+		mantisops_db Tc3 = new mantisops_db();
+		assertEquals ("yes", Tc3.ViewIssue("PRO", "testanalyst" , "Chrome"));
 	}
 }

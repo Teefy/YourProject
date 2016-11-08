@@ -1,6 +1,9 @@
+package testuitvoer;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import codebase.Beoordeling_Testcases;
 
 
 public class Beoordeling_TestcasesTest {

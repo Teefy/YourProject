@@ -1,6 +1,9 @@
+package testuitvoer;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import codebase.mantisops_db;
 
 public class mantisops_dbTest { // Zie Testanalyse mbt Report Issue (nu allen Chrome tbv bruikbaarheid) - bijlage-functionaliteit ook nog 'weg-gecomment' vanwege systeempad (windows vs linux)
 
