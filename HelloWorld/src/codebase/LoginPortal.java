@@ -34,27 +34,27 @@ public class LoginPortal {
 		  // Variablen van diverse users/rollen
 		  if (Rol == "developer") {
 			  driver.findElement(By.name("name")).sendKeys("softwaredeveloper");
-			  driver.findElement(By.name("pass")).sendKeys("cptYTP2016");
+			  driver.findElement(By.name("pass")).sendKeys("cptYTP2016!");
 		  }
 		  
 		  if (Rol == "testanalyst") {
 			  driver.findElement(By.name("name")).sendKeys("testanalyst");
-			  driver.findElement(By.name("pass")).sendKeys("cptYTP2016");
+			  driver.findElement(By.name("pass")).sendKeys("cptYTP2016!");
 		  }
 		  
 		  if (Rol == "testleader") {
 			  driver.findElement(By.name("name")).sendKeys("testleader");
-			  driver.findElement(By.name("pass")).sendKeys("cptYTP2016");
+			  driver.findElement(By.name("pass")).sendKeys("cptYTP2016!");
 		  }
 		  
 		  if (Rol == "stakeholder") {
 			  driver.findElement(By.name("name")).sendKeys("stakeholder");
-			  driver.findElement(By.name("pass")).sendKeys("cptYTP2016");
+			  driver.findElement(By.name("pass")).sendKeys("cptYTP2016!");
 		  }
 		  
 		  if (Rol == "projectmanager") {
 			  driver.findElement(By.name("name")).sendKeys("projectmanager");
-			  driver.findElement(By.name("pass")).sendKeys("cptYTP2016");
+			  driver.findElement(By.name("pass")).sendKeys("cptYTP2016!");
 		  }
 		  
 		  if (Rol == "testleader-error") {
