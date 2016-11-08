@@ -15,7 +15,6 @@ public class Aanmaken_Testproject_TestplanTest {
 	public void TC01() {
 		
 		Aanmaken_Testproject_Testplan TC01 = new Aanmaken_Testproject_Testplan();
-		assertEquals ( "true", TC01.InloggenTestproject("PRO", "testleader", "Firefox"));
-
-}
+		assertEquals ( "true", TC01.InloggenTestproject("PRO", "testleader", "Chrome"));
+	}
 }

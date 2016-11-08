@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 
 
 public class Mantisobjecten {
+	
 	private static WebElement element = null;
 
 	public static WebElement DropDown_category(WebDriver driver){
