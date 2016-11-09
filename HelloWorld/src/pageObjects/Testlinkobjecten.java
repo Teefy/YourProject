@@ -15,7 +15,7 @@ public class Testlinkobjecten {
 	public static WebElement OpenTestLink(WebDriver driver){
 		element =  driver.findElement(By.linkText("Test cases"));
 		return element;
-	}	
+	}		
 	
 	
 }
