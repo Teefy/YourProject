@@ -2,7 +2,7 @@ package codebase;
 
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -11,9 +11,7 @@ import pageObjects.Testlinkobjecten;
 public class TestlinkOps {
 
 public String createTestProject (String Omgeving, String Rol, String Browser) {
-	
-		// Guys - dit mijn klooi-bestand om elementen te inventariseren - graag even intact houden
-		
+			
 		// Inloggen CP/T
 	
 		LoginPortal PortalInloggen = new LoginPortal();
@@ -28,73 +26,63 @@ public String createTestProject (String Omgeving, String Rol, String Browser) {
 		
 		Testlinkobjecten.PijlRechts(driver).click();
 		
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		
 		Testlinkobjecten.OpenTestLink(driver).click();
-		
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		
 		// Navigeer naar Test Project Management
 		
 		driver.switchTo().frame("mainframe");
-		driver.findElement(By.linkText("Test Project Management")).click();
-
+		
+		Testlinkobjecten.OpenTestProjectManagement(driver).click();
+		
 		// Druk op Create-button
 		
-		driver.findElement(By.id("create")).click();
+		Testlinkobjecten.CreateProjectButton(driver).click();
 		
 		// Invullen velden (later naar POM & SQL gooien) 
 
-		driver.findElement(By.name("tprojectName")).sendKeys("My 1st Test Project");
+		Testlinkobjecten.ProjectNaam(driver).sendKeys("Automated Test Project");
 
-		driver.findElement(By.name("tcasePrefix")).sendKeys("TEST");
+		// Prefix + Description (bereikt middels TAB) 
+		Testlinkobjecten.Prefix_en_Description(driver).sendKeys("TC" + Keys.TAB + 
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
 		
-		//driver.switchTo().frame("//*[@id='cke_contents_notes']/iframe/html/body/p");
+		
+		// Sectie: Enhanced features	
+		
+		Testlinkobjecten.InventoryRadiobutton(driver).click();
 
-		//driver.findElement(By.xpath("//*[@id='cke_notes']/span[2]/span/table/tbody/tr[2]/cke_contents_notes/iframe/html/body/p")).sendKeys("TEST TEST TEST");
+		Testlinkobjecten.RequirementsRadiobutton(driver).click();
+		Testlinkobjecten.RequirementsRadiobutton(driver).click();
+		
+		Testlinkobjecten.PriorityRadiobutton(driver).click();
+		Testlinkobjecten.AutomationRadiobutton(driver).click();
+		
+		Testlinkobjecten.InventoryRadiobutton(driver).click();
+		
+		Testlinkobjecten.PriorityRadiobutton(driver).click();
+		Testlinkobjecten.AutomationRadiobutton(driver).click();
 
+		// Sectie: Issue Tracker Integration	
 		
-		// Frenzy van radio-buttons aan/uit klikken
-		
-		// sectie: Enhanced features	
-		
-		driver.findElement(By.cssSelector("input[name='optInventory']")).click();
-		
-		driver.findElement(By.cssSelector("input[name='optReq']")).click();
-		driver.findElement(By.cssSelector("input[name='optReq']")).click();
-		
-		driver.findElement(By.cssSelector("input[name='optPriority']")).click();
-		driver.findElement(By.cssSelector("input[name='optAutomation']")).click();
-		
-		driver.findElement(By.cssSelector("input[name='optInventory']")).click();
-		
-		driver.findElement(By.cssSelector("input[name='optPriority']")).click();
-		driver.findElement(By.cssSelector("input[name='optAutomation']")).click();
+		Testlinkobjecten.IssueTrackerRadiobutton(driver).click();
+		Testlinkobjecten.IssueTrackerRadiobutton(driver).click();
 
-		// sectie: Issue Tracker Integration	
+		new Select(Testlinkobjecten.IssueTrackerDropdown(driver)).selectByValue("1"); 
+		new Select(Testlinkobjecten.IssueTrackerDropdown(driver)).selectByValue("0"); 
 		
-		driver.findElement(By.cssSelector("input[name='issue_tracker_enabled']")).click();
-		driver.findElement(By.cssSelector("input[name='issue_tracker_enabled']")).click();
+		// Sectie: Availability
 		
-		new Select(driver.findElement(By.name("issue_tracker_id"))).selectByValue("1"); 
-		new Select(driver.findElement(By.name("issue_tracker_id"))).selectByValue("0"); 
-		
-		// sectie: Availability
+		Testlinkobjecten.ActiveRadiobutton(driver).click();
+		Testlinkobjecten.ActiveRadiobutton(driver).click();
 
-		driver.findElement(By.cssSelector("input[name='active']")).click();
-		driver.findElement(By.cssSelector("input[name='active']")).click();
-		
-		driver.findElement(By.cssSelector("input[name='is_public']")).click();
-		driver.findElement(By.cssSelector("input[name='is_public']")).click();
-		
-		// sectie: Create of Cancel 
-		
-		driver.findElement(By.cssSelector("input[value='Cancel']")).click();
-		// driver.findElement(By.cssSelector("input[value='Create']")).click();
+		Testlinkobjecten.PublicRadiobutton(driver).click();
+		Testlinkobjecten.PublicRadiobutton(driver).click();
 
+		// Sectie: Create of Cancel 
+		
 
+		//Testlinkobjecten.CreateNewProjectButton(driver).click();
+		Testlinkobjecten.CancelProjectButton(driver).click();
 		return null;
 }
 }
-
-//Testlinkobjecten.OpenTestProjectManagement(driver).click();
