@@ -2,6 +2,8 @@ package codebase;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -19,9 +21,7 @@ public String createTestProject (String Omgeving, String Rol, String Browser) {
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
 
 		driver.manage().window().maximize(); 
-		
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		
+				
 		// Navigeren naar Testlink
 		
 		Testlinkobjecten.PijlRechts(driver).click();
@@ -79,10 +79,42 @@ public String createTestProject (String Omgeving, String Rol, String Browser) {
 		Testlinkobjecten.PublicRadiobutton(driver).click();
 
 		// Sectie: Create of Cancel 
-		
 
-		//Testlinkobjecten.CreateNewProjectButton(driver).click();
-		Testlinkobjecten.CancelProjectButton(driver).click();
-		return null;
+		Testlinkobjecten.CreateProjectButton(driver).click();
+		//Testlinkobjecten.CancelProjectButton(driver).click();
+		
+		
+		// Verificatie van TC 
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+		String pageSource = driver.getPageSource();
+		String expectedContent = "Automated Test Project";	
+		String returnvalue = null;
+
+		if ((pageSource).contains(expectedContent))
+		{ 
+			System.out.println("TC GESLAAGD | Test Plan aangemaakt" );
+			returnvalue = "true"; 
+			driver.findElement(By.xpath("//*[@id='item_view']/tbody/tr[2]/td[8]/img")).click();
+			driver.findElement(By.id("ext-gen20")).click();
+			driver.close();
+			driver.quit();
+			
+		}	
+		
+		else
+		{ 
+			System.out.println("TC MISLUKT | Paginabron (bekijk nader):" + " " + pageSource );
+			returnvalue = "false"; 
+			driver.findElement(By.xpath("//*[@id='item_view']/tbody/tr[2]/td[8]/img")).click();
+			driver.findElement(By.id("ext-gen20")).click();
+			driver.close();
+			driver.quit();
+			
+		}
+
+		return returnvalue;
+			
 }
+
 }
