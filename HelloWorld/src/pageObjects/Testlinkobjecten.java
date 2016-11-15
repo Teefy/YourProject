@@ -109,5 +109,9 @@ public class Testlinkobjecten {
 		return element;
 	
 	}
+	public static WebElement requirementSpecifactionButton(WebDriver driver){
+		element =  driver.findElement(By.linkText("Requirement Specification"));
+		return element;
+	}
 	
-}
+	}
