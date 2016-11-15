@@ -9,7 +9,7 @@ import codebase.Rapportage;
 public class RapportageTest {
 
 	@Test
-	public void TC01() {
+	public void TC01() throws InterruptedException {
 		Rapportage TC01 = new Rapportage ();
 		assertEquals ("true", TC01.A ( "PRO", "testleader", "Chrome"));
 	
