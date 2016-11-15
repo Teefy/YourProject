@@ -6,7 +6,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import com.mysql.jdbc.Statement;
 
 public class ConnectMySQL {
 
@@ -23,9 +22,9 @@ public class ConnectMySQL {
 		connection();
 		String[] resultaat = null;
 
-		String host = "jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7142868";
-		String username = "sql7142868";
-		String password = "4gBABrRN3x";
+		String host = "jdbc:mysql://192.168.50.238:3306/yourdb";
+		String username = "Your";
+		String password = "Your";
 
 		try {
 			Connection connect = DriverManager.getConnection(host, username,

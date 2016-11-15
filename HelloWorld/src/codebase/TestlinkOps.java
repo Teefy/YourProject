@@ -28,9 +28,7 @@ public String createTestProject (String Omgeving, String Rol, String Browser) {
 		Testlinkobjecten.OpenTestLink(driver).click();
 		
 		// Navigeer naar Test Project Management
-		
-		driver.switchTo().frame("mainframe");
-		
+				
 		Testlinkobjecten.OpenTestProjectManagement(driver).click();
 		
 		// Druk op Create-button
@@ -137,8 +135,6 @@ public String createTestProjectFail (String Omgeving, String Rol, String Browser
 		Testlinkobjecten.OpenTestLink(driver).click();
 		
 		// Navigeer naar Test Project Management
-		
-		driver.switchTo().frame("mainframe");
 		
 		Testlinkobjecten.OpenTestProjectManagement(driver).click();
 		
