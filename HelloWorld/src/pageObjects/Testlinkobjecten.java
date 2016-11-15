@@ -1,5 +1,8 @@
 package pageObjects;
+import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -20,6 +23,7 @@ public class Testlinkobjecten {
 	}		
 	
 	public static WebElement OpenTestProjectManagement(WebDriver driver){
+		driver.switchTo().frame("mainframe");
 		element =  driver.findElement(By.linkText("Test Project Management"));
 		return element;
 	} 
@@ -109,5 +113,27 @@ public class Testlinkobjecten {
 		return element;
 	
 	}
+	
+	
+	// !!!!!!!!!!! Test Specification !!!!!!!!!!!!	
+	
+	public static WebElement OpenTestSpecification(WebDriver driver){
+		driver.switchTo().frame("mainframe");
+		element =  driver.findElement(By.linkText("Test Specification"));
+		return element;
+	} 
+
+	public static WebElement DesktopButton(WebDriver driver){
+		//driver.switchTo().frame((WebElement) (By.cssSelector("iframe[title='titlebar']")));
+		//driver.get("https://www.yourtestprojects.com");
+		
+	driver.switchTo().frame(2);
+	
+		System.out.println(driver.getPageSource());
+		
+		return element;
+	} 
+	
+
 	
 }
