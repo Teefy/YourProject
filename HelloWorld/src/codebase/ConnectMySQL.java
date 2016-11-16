@@ -80,4 +80,45 @@ public class ConnectMySQL {
 		}
 		return resultaat;
 	}
+	public static String[] ConnectTestcase(String SqlInput) {
+		connection();
+		String[] resultaat = null;
+
+		String host = "jdbc:mysql://192.168.50.238:3306/yourdb";
+		String username = "Your";
+		String password = "Your";
+
+		try {
+			Connection connect = DriverManager.getConnection(host, username,
+					password);
+			PreparedStatement statement = (PreparedStatement) connect
+					.prepareStatement(SqlInput);
+			ResultSet data = statement.executeQuery();
+			data.next();
+
+			//Ophalen objecten uit database
+			Object tc_id = data.getObject("tc_id");
+			Object tc_naam = data.getObject("tc_naam");
+						
+			String[] opsommingresultaat; 
+			opsommingresultaat = new String [2];
+			
+			opsommingresultaat[0] = tc_id.toString();
+			opsommingresultaat[1] = tc_naam.toString();
+								
+			resultaat = opsommingresultaat;
+			statement.close();
+			connect.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resultaat;
+	}
+	public static String GeefTcNaam (int TcId) {
+		
+		String[] connectionToMySql = ConnectMySQL.ConnectTestcase("select * from tbd_testcase where tc_id =" + TcId);
+		
+		return connectionToMySql[1];
+	}
 }

@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class Rapportage {
 
-	public String A (String Omgeving, String Rol, String Browser) {
+	public boolean A (String Omgeving, String Rol, String Browser) throws InterruptedException {
 		
 		LoginPortal PortalInloggen = new LoginPortal();
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
@@ -39,28 +39,33 @@ public class Rapportage {
 		
 		//  Klik op button 'apply filter'
 		driver.findElement(By.name("filter")).click();
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		
+		Thread.sleep(1000);
+			
 		// Klik op de button 'Print Reports'
 		driver.findElement(By.linkText("Print Reports")).click();
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		// Klik op het Word icoontje linksboven
-		 driver.findElement(By.xpath("/html/body/form[1]/table/tbody/tr/td/a[1]/img")).click();
-		 driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
+		driver.findElement(By.xpath("/html/body/form[1]/table/tbody/tr/td/a[1]/img")).click();
+		driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
 		 
-		 driver.quit ();
+		Thread.sleep(2000);
 		
-		 File f = new File("C:/Users/dennis/Downloads/test (1).doc");
+		driver.quit ();
+		boolean outcome = false;
+				
+		 File f = new File("C:/Users/Michel/Downloads/test.doc");
 			if(f.exists()){
 			    System.out.println("success");
+			    outcome = true;
 			}
 			else{
 			    System.out.println("fail");
-			    
-			    
-			}
-		
-		return null ;
+			    }
+			f.delete();
+
+		return outcome;
 }
 
 //--------------------------------------------------------------------------------------------------
