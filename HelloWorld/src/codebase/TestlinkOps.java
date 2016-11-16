@@ -115,9 +115,6 @@ public String createTestProject (String Omgeving, String Rol, String Browser) {
 			
 }
 
-//__________________________________________________________________________________________________________
-
-
 public String createTestProjectFail (String Omgeving, String Rol, String Browser) {
 			
 		// Inloggen CP/T
@@ -224,5 +221,49 @@ public String createTestProjectFail (String Omgeving, String Rol, String Browser
 			
 }
 
-}
 
+public String createTestSpecification (String Omgeving, String Rol, String Browser) {
+
+	// Inloggen CP/T
+
+	LoginPortal PortalInloggen = new LoginPortal();
+
+	WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
+
+	driver.manage().window().maximize(); 
+
+	driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+	// Navigeren naar Testlink
+
+	Testlinkobjecten.PijlRechts(driver).click();
+
+	driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+	Testlinkobjecten.OpenTestLink(driver).click();
+
+	driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+	// Navigeer naar Test Specification
+
+	driver.switchTo().frame("mainframe");
+	driver.findElement(By.linkText("Test Specification")).click();
+
+	//uitklappen tree
+	driver.switchTo().frame("treeframe");
+	driver.findElement(By.xpath("//*[@id='extdd-6']/span")).click();
+
+	//*[@id=' extdd-6"]/span
+
+	//*[@id='extdd-6']/span
+
+
+	// Druk op Create-button ===============================
+
+	driver.switchTo().frame("workframe");
+
+	driver.findElement(By.id("create_tc")).click();
+
+	return null;
+	}
+}

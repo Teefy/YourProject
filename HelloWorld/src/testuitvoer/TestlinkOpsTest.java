@@ -22,5 +22,11 @@ public class TestlinkOpsTest {
 		TestlinkOps TC02 = new TestlinkOps();
 		assertEquals ( "false", TC02.createTestProjectFail("PRO", "testleader", "Chrome"));
 	}
+	
+	@Test
+	public void createTestSpecification_TC03() {
 
+	TestlinkOps TC03 = new TestlinkOps();
+	assertEquals ( "true", TC03.createTestSpecification("ACC", "testleader", "Chrome"));
+	}
 }
