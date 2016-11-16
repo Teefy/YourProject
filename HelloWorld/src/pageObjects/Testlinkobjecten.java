@@ -123,17 +123,17 @@ public class Testlinkobjecten {
 		return element;
 	} 
 
-	public static WebElement DesktopButton(WebDriver driver){
-		//driver.switchTo().frame((WebElement) (By.cssSelector("iframe[title='titlebar']")));
-		//driver.get("https://www.yourtestprojects.com");
-		
-	driver.switchTo().frame(2);
-	
-		System.out.println(driver.getPageSource());
-		
+	public static WebElement CreateTestSuite(WebDriver driver){
+		element = driver.findElement(By.id("new_testsuite"));
 		return element;
-	} 
+	}
 	
+	
+	public static WebElement TestPlanNaam(WebDriver driver){
+	element = driver.findElement(By.id("name"));
+	return element;
+	} 
+		
 
 	
 }

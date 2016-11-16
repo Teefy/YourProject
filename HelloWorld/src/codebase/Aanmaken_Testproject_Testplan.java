@@ -2,11 +2,11 @@ package codebase;
 
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
-import pageObjects.Mantisobjecten;
 import pageObjects.Testlinkobjecten;
+import probeercode.GenerateData;
 
 public class Aanmaken_Testproject_Testplan {
 
@@ -26,10 +26,14 @@ public String InloggenTestproject (String Omgeving, String Rol, String Browser) 
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		
 		// Voer Projectnaam in
+
+		Testlinkobjecten.OpenTestSpecification(driver).click();
 		
+		driver.switchTo().frame("workframe");
 		
-		
-		driver.findElement(By.xpath(".//*[@id='item_view']/tbody/tr[2]/td[2]/input")).sendKeys("Den");
+		Testlinkobjecten.CreateTestSuite(driver).click();
+			
+		Testlinkobjecten.TestPlanNaam(driver).sendKeys(GenerateData.generateRandomAlphaNumeric(25) + Keys.TAB + GenerateData.generateRandomString(500));
 		
 		return null;
 }
