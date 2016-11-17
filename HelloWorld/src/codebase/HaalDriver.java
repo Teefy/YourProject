@@ -16,7 +16,11 @@ public class HaalDriver {
 	    if (OsUtils.getOsName().equals("Linux")) {
 	        System.setProperty("webdriver.chrome.driver", "/home/youradministrator/eclipse/chromedriver");
 	        } 
-
+	    
+	    if (OsUtils.getOsName().equals("Mac OS X")) {
+	        System.setProperty("webdriver.chrome.driver", "/Users/Wahjad/Documents/Eclipse workspace/Google & Firefox Driver/chromedriver");
+	        } 
+	    
 	    WebDriver driver = new ChromeDriver();	
  		return driver;
 	}
@@ -33,6 +37,10 @@ public class HaalDriver {
 			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 			 
 			capabilities.setCapability("marionette", true);
+			}
+		
+		if (OsUtils.getOsName().equals("Mac OS X")) {
+			System.setProperty("webdriver.gecko.driver", "/Users/Wahjad/Documents/Eclipse workspace/Google & Firefox Driver/geckodriver");	
 			}
 		
 		WebDriver driver = new FirefoxDriver();	
