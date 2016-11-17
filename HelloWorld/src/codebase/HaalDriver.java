@@ -53,4 +53,8 @@ public class HaalDriver {
 		WebDriver driver = new InternetExplorerDriver();	
  		return driver;
 	}
+	
 }
+
+//=========
+
