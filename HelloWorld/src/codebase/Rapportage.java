@@ -7,6 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 
+import pageObjects.Mantisobjecten;
+import pageObjects.navigeren;
+
 public class Rapportage {
 
 	public boolean A (String Omgeving, String Rol, String Browser) throws InterruptedException {
@@ -14,12 +17,16 @@ public class Rapportage {
 		LoginPortal PortalInloggen = new LoginPortal();
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
 		driver.manage().window().maximize(); 
+		
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		driver.findElement(By.id("arrow-right-wrapper")).click();
+		navigeren.PijlRechts(driver).click();;
+		
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		driver.findElement(By.linkText("Issues")).click();
+		navigeren.NavigeerMantis(driver).click();
+		
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		driver.findElement(By.linkText("View Issues")).click();
+		navigeren.BekijkBevindingen(driver).click();
+		
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		
 		//Selecteer filter Reporter: testleader
@@ -38,26 +45,26 @@ public class Rapportage {
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		
 		//  Klik op button 'apply filter'
-		driver.findElement(By.name("filter")).click();
+		Mantisobjecten.ApplyFilter(driver).click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		
-		Thread.sleep(1000);
-			
 		// Klik op de button 'Print Reports'
-		driver.findElement(By.linkText("Print Reports")).click();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(500);
+		Mantisobjecten.ClickReport(driver).click();
+		
 		// Klik op het Word icoontje linksboven
-		driver.findElement(By.xpath("/html/body/form[1]/table/tbody/tr/td/a[1]/img")).click();
-		driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
-		 
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Mantisobjecten.ClickWordIcon(driver).click();
+				 
+		Thread.sleep(500);
 		
 		driver.quit ();
 		boolean outcome = false;
-				
-		 File f = new File("C:/Users/Michel/Downloads/test.doc");
+		
+		String home = System.getProperty("user.home");		
+		File f = new File(home+"/Downloads/test.doc");
 			if(f.exists()){
-			    System.out.println("success");
+			    System.out.println("Success");
 			    outcome = true;
 			}
 			else{
@@ -107,7 +114,7 @@ public class Rapportage {
 			driver.findElement(By.linkText("CSV Export")).click();
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			
-			driver.quit ();
+			// driver.quit ();
 			
 			return null ;
 		}

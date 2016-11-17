@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import pageObjects.Mantisobjecten;
-
+import pageObjects.navigeren;
 
 public class mantisops_db {
 
@@ -17,14 +17,18 @@ public class mantisops_db {
 		LoginPortal PortalInloggen = new LoginPortal();
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
 		driver.manage().window().maximize(); 
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.findElement(By.id("arrow-right-wrapper")).click();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.findElement(By.linkText("Issues")).click();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.findElement(By.linkText("Report Issue")).click();
 		
-		// verbinding met MySql database en specificatie (nu online sql-db van Michel) 
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		navigeren.PijlRechts(driver);
+		
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		navigeren.NavigeerMantis(driver);
+		
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		navigeren.MaakBevinding(driver);
+		
+		
+		// verbinding met MySql database en specificatie
 		String[] connectionToMySql = ConnectMySQL.ConnectionToMySql("select * from tbl_bevinding where bevinding_id =" + BevId);	
 		
 		// Invul-sectie van velden en dropdowns

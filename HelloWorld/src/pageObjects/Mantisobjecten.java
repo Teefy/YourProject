@@ -73,4 +73,35 @@ public class Mantisobjecten {
 		element =  driver.findElement(By.name("custom_field_1"));
 		return element;
 	}
+	
+	public static WebElement DropDown_ToonSeverity(WebDriver driver){
+		element =  driver.findElement(By.name("show_severity[]"));
+		return element;
+	}
+	
+	public static WebElement ClickWordIcon(WebDriver driver){
+		element =  driver.findElement(By.xpath("/html/body/form[1]/table/tbody/tr/td/a[1]/img"));
+		return element;
+	}
+	
+	public static WebElement ClickReport(WebDriver driver){
+		element =  driver.findElement(By.linkText("Print Reports"));
+		return element;
+	}
+	public static WebElement ApplyFilter(WebDriver driver){
+		element =  driver.findElement(By.name("filter"));
+		return element;
+	}
+	
+	public static WebElement ToonSeverity(WebDriver driver){
+		element =  driver.findElement(By.name("show_severity[]"));
+		return element;
+	}
+	public static WebElement ToonCategoryFilter(WebDriver driver){
+		element =  driver.findElement(By.id("show_category_filter"));
+		return element;
+	}
+	
+	
+	
 }

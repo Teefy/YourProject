@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import pageObjects.Testlinkobjecten;
+import pageObjects.navigeren;
 
 public class TestlinkOps {
 
@@ -23,7 +24,7 @@ public String createTestProject (String Omgeving, String Rol, String Browser) {
 				
 		// Navigeren naar Testlink
 		
-		Testlinkobjecten.PijlRechts(driver).click();
+		navigeren.PijlRechts(driver).click();
 		
 		Testlinkobjecten.OpenTestLink(driver).click();
 		
@@ -127,7 +128,7 @@ public String createTestProjectFail (String Omgeving, String Rol, String Browser
 				
 		// Navigeren naar Testlink
 		
-		Testlinkobjecten.PijlRechts(driver).click();
+		navigeren.PijlRechts(driver).click();
 		
 		Testlinkobjecten.OpenTestLink(driver).click();
 		
@@ -236,7 +237,7 @@ public String createTestSpecification (String Omgeving, String Rol, String Brows
 
 	// Navigeren naar Testlink
 
-	Testlinkobjecten.PijlRechts(driver).click();
+	navigeren.PijlRechts(driver).click();
 
 	driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 

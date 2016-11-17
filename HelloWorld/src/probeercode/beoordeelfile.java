@@ -11,7 +11,10 @@ public class beoordeelfile {
 	}
 	
 	private static boolean checkfile() {
-	 File f = new File("C:/Users/Michel/Downloads/test.doc");
+	
+		String home = System.getProperty("user.home");
+		File f = new File(home+"/Downloads/test.doc"); 
+		
 		if(f.exists()){
 		    System.out.println("success");
 		}

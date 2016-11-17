@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 import pageObjects.Testlinkobjecten;
 import probeercode.GenerateData;
+import pageObjects.navigeren;
 
 public class Aanmaken_Testproject_Testplan {
 
@@ -17,7 +18,7 @@ public String InloggenTestproject (String Omgeving, String Rol, String Browser) 
 		driver.manage().window().maximize(); 
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		
-		Testlinkobjecten.PijlRechts(driver).click();
+		navigeren.PijlRechts(driver).click();
 		
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		
