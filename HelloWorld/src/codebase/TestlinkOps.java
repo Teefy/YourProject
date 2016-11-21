@@ -250,14 +250,9 @@ public String createTestSpecification (String Omgeving, String Rol, String Brows
 	driver.switchTo().frame("mainframe");
 	driver.findElement(By.linkText("Test Specification")).click();
 
-	//uitklappen tree
+	// uitklappen tree
 	driver.switchTo().frame("treeframe");
 	driver.findElement(By.xpath("//*[@id='extdd-6']/span")).click();
-
-	//*[@id=' extdd-6"]/span
-
-	//*[@id='extdd-6']/span
-
 
 	// Druk op Create-button ===============================
 
