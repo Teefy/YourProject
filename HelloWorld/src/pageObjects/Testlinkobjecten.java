@@ -125,7 +125,57 @@ public class Testlinkobjecten {
 	element = driver.findElement(By.id("name"));
 	return element;
 	} 
+	
+	public static WebElement Kroesuway3000project(WebDriver driver){
+		element = driver.findElement(By.xpath("//*[@id='extdd-12']/span"));
+		return element;
+		} 
 		
+	
 
+	public static WebElement CreateTCButton(WebDriver driver){
+		element = driver.findElement(By.id("create_tc"));
+		return element;
+		} 
+	
+	
+	public static WebElement TCNaam_beschrijving(WebDriver driver){
+		element = driver.findElement(By.id("testcase_name"));
+		return element;
+		} 
+	
+		
+	public static WebElement DropDown_status(WebDriver driver){
+		element =  driver.findElement(By.id("tc_status"));
+		return element;
+	}
+	
+	public static WebElement DropDown_importance(WebDriver driver){
+		element =  driver.findElement(By.name("importance"));
+		return element;
+	}
+
+	public static WebElement DropDown_execution(WebDriver driver){
+		element =  driver.findElement(By.name("exec_type"));
+		return element;
+	}
+	
+	public static WebElement Duration_field(WebDriver driver){
+		element =  driver.findElement(By.id("estimated_execution_duration"));
+		return element;
+	}
+	
+	public static WebElement CreateTCinTP(WebDriver driver){
+		element =  driver.findElement(By.id("do_create_button_2"));
+		return element;
+	}
+	
+	public static WebElement CancelTCinTP(WebDriver driver){
+		element =  driver.findElement(By.id("go_back_2"));
+		return element;
+	}
+	
+	
+	
 	
 }
