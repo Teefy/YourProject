@@ -12,22 +12,21 @@ import pageObjects.navigeren;
 
 public class mantisops_db {
 
-	public boolean ReportIssue(String Omgeving, String Rol, String Browser, String BevId) 
+	public boolean ReportIssue(String Omgeving, String Rol, String Browser, String BevId) throws InterruptedException 
 	{
 		LoginPortal PortalInloggen = new LoginPortal();
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
 		driver.manage().window().maximize(); 
 		
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		navigeren.PijlRechts(driver);
+		navigeren.PijlRechts(driver).click();
 		
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		navigeren.NavigeerMantis(driver);
+		navigeren.NavigeerMantis(driver).click();
 		
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		navigeren.MaakBevinding(driver);
-		
-		
+		navigeren.MaakBevinding(driver).click();
+				
 		// verbinding met MySql database en specificatie
 		String[] connectionToMySql = ConnectMySQL.ConnectionToMySql("select * from tbl_bevinding where bevinding_id =" + BevId);	
 		
@@ -105,7 +104,7 @@ public class mantisops_db {
 	//___________________________________________________________________________________________________
 
 
-	public boolean ReportIssueSH(String Omgeving, String Rol, String Browser) 
+	public boolean ReportIssueSH(String Omgeving, String Rol, String Browser) throws InterruptedException 
 	{
 		LoginPortal PortalInloggen = new LoginPortal();
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
@@ -148,7 +147,7 @@ public class mantisops_db {
 	//___________________________________________________________________________________________________
 	
 	
-	public boolean ViewIssue(String Omgeving, String Rol, String Browser) {
+	public boolean ViewIssue(String Omgeving, String Rol, String Browser) throws InterruptedException {
 		
 		LoginPortal PortalInloggen = new LoginPortal();
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
@@ -191,8 +190,8 @@ public class mantisops_db {
 	//___________________________________________________________________________________________________
 
 	
-	public boolean LoginError(String Omgeving, String Rol, String Browser) 
-	{
+	public boolean LoginError(String Omgeving, String Rol, String Browser) throws InterruptedException 	{
+		
 		LoginPortal PortalInloggen = new LoginPortal();
 		WebDriver driver = PortalInloggen.inloggenError(Omgeving,Rol,Browser);
 		

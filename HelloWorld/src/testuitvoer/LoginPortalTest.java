@@ -8,21 +8,21 @@ import codebase.mantisops_db;
 public class LoginPortalTest {
 
 	@Test
-	public void TC1() 
+	public void TC1() throws InterruptedException 
 	{
 		mantisops_db Tc1 = new mantisops_db();
 		assertEquals("yes", Tc1.ReportIssue("PRO", "testanalyst", "Chrome", "1"));
 	}
 	
 	@Test
-	public void TC2() 
+	public void TC2() throws InterruptedException 
 	{
 		mantisops_db Tc2 = new mantisops_db();
 		assertEquals("yes", Tc2.ReportIssue("PRO", "testanalyst", "Firefox", "1"));
 	}
 	
 	@Test
-	public void TC3()
+	public void TC3()throws InterruptedException 
 	{
 		mantisops_db Tc3 = new mantisops_db();
 		assertEquals ("yes", Tc3.ViewIssue("PRO", "testanalyst" , "Chrome"));
