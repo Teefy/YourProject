@@ -94,14 +94,17 @@ public class Mantisobjecten {
 	}
 	
 	public static WebElement ToonSeverity(WebDriver driver){
-		element =  driver.findElement(By.name("show_severity[]"));
+		element =  driver.findElement(By.id("show_severity_filter"));
 		return element;
 	}
 	public static WebElement ToonCategoryFilter(WebDriver driver){
 		element =  driver.findElement(By.id("show_category_filter"));
 		return element;
 	}
-	
+	public static WebElement ToonCategory(WebDriver driver){
+		element =  driver.findElement(By.name("show_category[]"));
+		return element;
+	}
 	
 	
 }

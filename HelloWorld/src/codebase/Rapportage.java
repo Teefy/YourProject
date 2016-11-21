@@ -35,12 +35,12 @@ public class Rapportage {
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			
 		//Selecteer filter Category: issue
-		driver.findElement(By.id("show_category_filter")).click();
+		Mantisobjecten.ToonCategoryFilter(driver).click();
 		new Select(driver.findElement(By.name("show_category[]"))).selectByVisibleText("Issue");
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		
 		// Selecteer filter Servity: Low
-		driver.findElement(By.id("show_severity_filter")).click();
+		Mantisobjecten.ToonSeverity(driver).click();
 		new Select(driver.findElement(By.name("show_severity[]"))).selectByVisibleText("Low");
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		
