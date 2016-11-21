@@ -12,7 +12,7 @@ import pageObjects.navigeren;
 
 public class mantisops_db {
 
-	public String ReportIssue(String Omgeving, String Rol, String Browser, String BevId) 
+	public boolean ReportIssue(String Omgeving, String Rol, String Browser, String BevId) 
 	{
 		LoginPortal PortalInloggen = new LoginPortal();
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
@@ -75,18 +75,18 @@ public class mantisops_db {
 		String pageSource = driver.getPageSource();
 		String expectedContent = "View Submitted Issue";
 		String Error = "APPLICATION ERROR #11";
-		String returnvalue = null;		
+		boolean returnvalue = false;		
 
 		if ((pageSource).contains(expectedContent))
 		{ 
 			System.out.println("TC GESLAAGD | Bevinding aangemaakt" );
-			returnvalue = "yes";
+			returnvalue = true;
 		}
 		
 		else if ((pageSource).contains(Error))
 		{ 
 			System.out.println("TC MISLUKT | Foutmelding aanwezig" );
-			returnvalue = "no";
+			returnvalue =false;
 		}
 		
 		else
@@ -105,7 +105,7 @@ public class mantisops_db {
 	//___________________________________________________________________________________________________
 
 
-	public String ReportIssueSH(String Omgeving, String Rol, String Browser) 
+	public boolean ReportIssueSH(String Omgeving, String Rol, String Browser) 
 	{
 		LoginPortal PortalInloggen = new LoginPortal();
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
@@ -123,7 +123,7 @@ public class mantisops_db {
 		
 		String a = "stakeholder"; // maar kan ook string Rol invullen = generieker
 		String b = driver.findElement(By.className("username")).getText();
-		String returnvalue = null;
+		boolean returnvalue = false;
 		
 		driver.close();  
 		driver.quit();   
@@ -131,7 +131,7 @@ public class mantisops_db {
 		   if ((a).equals(b)) 
 		   {
 			System.out.println("TC GESLAAGD: userrol komt overeen (zie boven)");
-			returnvalue = "no";
+			returnvalue = false;
 		   }
 		   
 		   else 
@@ -148,7 +148,7 @@ public class mantisops_db {
 	//___________________________________________________________________________________________________
 	
 	
-	public String ViewIssue(String Omgeving, String Rol, String Browser) {
+	public boolean ViewIssue(String Omgeving, String Rol, String Browser) {
 		
 		LoginPortal PortalInloggen = new LoginPortal();
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
@@ -168,7 +168,7 @@ public class mantisops_db {
 
 		String actualTitle = driver.getTitle();
 		String expectedTitle = "View Issues - MantisBT";
-		String returnvalue = null;		
+		boolean returnvalue = false;		
 		
 		driver.close();
 		driver.quit();
@@ -176,7 +176,7 @@ public class mantisops_db {
 		if ((actualTitle).equals(expectedTitle))
 		{ 
 			System.out.println("TC GESLAAGD: Paginatitel: View Issues - MantisBT");
-			returnvalue = "yes";
+			returnvalue = true;
 		}
 			else 
 		{ 
@@ -191,7 +191,7 @@ public class mantisops_db {
 	//___________________________________________________________________________________________________
 
 	
-	public String LoginError(String Omgeving, String Rol, String Browser) 
+	public boolean LoginError(String Omgeving, String Rol, String Browser) 
 	{
 		LoginPortal PortalInloggen = new LoginPortal();
 		WebDriver driver = PortalInloggen.inloggenError(Omgeving,Rol,Browser);
@@ -207,7 +207,7 @@ public class mantisops_db {
 		
 		String a = "Sorry, unrecognized username or password.";
 		String b = driver.findElement(By.id("information")).getText().substring(14,55);
-		String returnvalue = null;
+		boolean returnvalue =false;
 		
 		driver.close();  
 		driver.quit();   
@@ -215,20 +215,16 @@ public class mantisops_db {
 		   if ((a).equals(b)) 
 		   {
 			System.out.println("TC GESLAAGD: juiste foutmelding");
-			returnvalue = "yes";
+			returnvalue = true;
 		   }
 		   
 		   else 
 		   { 
 			System.out.println("TC MISLUKT: onjuiste foutmelding");
 		   }
-			
 		   
 		return returnvalue;
-	
-		
+
 	}
-	
-	
 	
 }
