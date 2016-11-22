@@ -29,20 +29,20 @@ public class Rapportage {
 		navigeren.BekijkBevindingen(driver).click();
 		
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		
+		Thread.sleep(500);
 		//Selecteer filter Reporter: testleader
-		driver.findElement(By.id("reporter_id_filter")).click();
-		new Select(driver.findElement(By.name("reporter_id[]"))).selectByVisibleText("testleader");
+		Mantisobjecten.Select_reporter(driver).click();
+		new Select(Mantisobjecten.Vul_reporter(driver)).selectByVisibleText("testleader");
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			
 		//Selecteer filter Category: issue
-		Mantisobjecten.ToonCategoryFilter(driver).click();
-		new Select(driver.findElement(By.name("show_category[]"))).selectByVisibleText("Issue");
+		Mantisobjecten.SelectCategory(driver).click();
+		new Select(Mantisobjecten.Vul_Category(driver)).selectByVisibleText("Issue");
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		
 		// Selecteer filter Servity: Low
-		Mantisobjecten.ToonSeverity(driver).click();
-		new Select(driver.findElement(By.name("show_severity[]"))).selectByVisibleText("Low");
+		Mantisobjecten.Select_Severity(driver).click();
+		new Select(Mantisobjecten.Vul_Severity(driver)).selectByVisibleText("Low");
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		
 		//  Klik op button 'apply filter'
@@ -85,38 +85,42 @@ public class Rapportage {
 			WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
 			driver.manage().window().maximize(); 
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-			driver.findElement(By.id("arrow-right-wrapper")).click();
+			
+			navigeren.PijlRechts(driver).click();
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-			driver.findElement(By.linkText("Issues")).click();
+			
+			navigeren.NavigeerMantis(driver).click();
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-			driver.findElement(By.linkText("View Issues")).click();
+			
+			navigeren.BekijkBevindingen(driver).click();
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			
 			//Selecteer filter Reporter: softwaredeveloper
-			driver.findElement(By.id("reporter_id_filter")).click();
-			new Select(driver.findElement(By.name("reporter_id[]"))).selectByVisibleText("softwaredeveloper");
+			Thread.sleep(500);
+			Mantisobjecten.Select_reporter(driver).click();
+			new Select(Mantisobjecten.Vul_reporter(driver)).selectByVisibleText("softwaredeveloper");
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 				
 			//Selecteer filter Category: question
-			driver.findElement(By.id("show_category_filter")).click();
-			new Select(driver.findElement(By.name("show_category[]"))).selectByVisibleText("Question");
+			Mantisobjecten.SelectCategory(driver).click();
+			new Select(Mantisobjecten.Vul_Category(driver)).selectByVisibleText("Question");
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			
 			// Selecteer filter Servity: Low
-			driver.findElement(By.id("show_severity_filter")).click();
-			new Select(driver.findElement(By.name("show_severity[]"))).selectByVisibleText("Low");
+			Mantisobjecten.Select_Severity(driver).click();
+			new Select(Mantisobjecten.Vul_Severity(driver)).selectByVisibleText("Low");
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			
 			//  Klik op button 'apply filter'
-			driver.findElement(By.name("filter")).click();
+			
+			Mantisobjecten.ApplyFilter(driver).click();
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			
 			Thread.sleep(500);
 			// Klik op de button 'CSV reports'
-			driver.findElement(By.linkText("CSV Export")).click();
+			Mantisobjecten.Click_CSV(driver).click();
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-			
-						
+									
 			Thread.sleep(1000);
 			
 			driver.quit ();
@@ -141,34 +145,41 @@ public boolean C (String Omgeving, String Rol, String Browser) throws Interrupte
 			LoginPortal PortalInloggen = new LoginPortal();
 			WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
 			driver.manage().window().maximize(); 
+			
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-			driver.findElement(By.id("arrow-right-wrapper")).click();
+			navigeren.PijlRechts(driver).click();
+			
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-			driver.findElement(By.linkText("Issues")).click();
+			navigeren.NavigeerMantis(driver).click();
+			
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-			driver.findElement(By.linkText("View Issues")).click();
+			navigeren.BekijkBevindingen(driver).click();
 			
 			//Selecteer filter Reporter: softwaredeveloper
-			driver.findElement(By.id("reporter_id_filter")).click();
-			new Select(driver.findElement(By.name("reporter_id[]"))).selectByVisibleText("testleader");
+			
+			Thread.sleep(500);
+			Mantisobjecten.Select_reporter(driver).click();
+			new Select(Mantisobjecten.Vul_reporter(driver)).selectByVisibleText("testleader");
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 				
 			//Selecteer filter Category: question
-			driver.findElement(By.id("show_category_filter")).click();
-			new Select(driver.findElement(By.name("show_category[]"))).selectByVisibleText("Issue");
+			
+			Mantisobjecten.SelectCategory(driver).click();
+			new Select(Mantisobjecten.Vul_Category(driver)).selectByVisibleText("Issue");
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			
 			// Selecteer filter Servity: Low
-			driver.findElement(By.id("show_severity_filter")).click();
-			new Select(driver.findElement(By.name("show_severity[]"))).selectByVisibleText("Low");
+			Mantisobjecten.Select_Severity(driver).click();
+			new Select(Mantisobjecten.Vul_Severity(driver)).selectByVisibleText("Low");
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			
 			//  Klik op button 'apply filter'
-			driver.findElement(By.name("filter")).click();
+			
+			Mantisobjecten.ApplyFilter(driver).click();
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			Thread.sleep(500);
 			// Klik op de button 'XML export'
-			driver.findElement(By.linkText("XML Export")).click();
+			Mantisobjecten.Click_XML(driver).click();
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			
 			Thread.sleep(1000);
