@@ -44,8 +44,7 @@ public Boolean createTestProject (String Omgeving, String Rol, String Browser) t
 		Testlinkobjecten.ProjectNaam(driver).sendKeys("Automated Test Project");
 
 		// Prefix + Description (bereikt middels TAB) 
-		Testlinkobjecten.Prefix_en_Description(driver).sendKeys("TC" + Keys.TAB + 
-		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+		Testlinkobjecten.Prefix_en_Description(driver).sendKeys("TC" + Keys.TAB + GenerateData.generateRandomString(250));
 		
 		// Sectie: Enhanced features	
 		
