@@ -442,6 +442,85 @@ public Boolean createTestSpecsTCFail (String Omgeving, String Rol, String Browse
 	return returnvalue;
 	
 }
+
+
+//------------------------------- Create Test Suite & Test Case ------------------------------------------
+//------------------------------------------ TC03 --------------------------------------------------------
+
+
+public Boolean createTestSuiteTC (String Omgeving, String Rol, String Browser) throws InterruptedException {
+				
+		LoginPortal PortalInloggen = new LoginPortal();
+				
+		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
+				
+		driver.manage().window().maximize(); 
+				
+		Thread.sleep(500);
+				
+		navigeren.PijlRechts(driver).click();
+				
+		Thread.sleep(500);
+				
+		Testlinkobjecten.OpenTestLink(driver).click();
+				
+		Thread.sleep(500);
+				
+	    // Voer Projectnaam in
+
+		Testlinkobjecten.OpenTestSpecification(driver).click();
+				
+		Thread.sleep(500);
+				
+		// Jezus christus :o 
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame("mainframe");
+		driver.switchTo().frame("workframe");
+				
+		Testlinkobjecten.CreateTSButton(driver).click();
+
+		Testlinkobjecten.TSNaam_beschrijving(driver).sendKeys("TS XXX" + Keys.TAB + "Kroesuway 3000 bot: " 
+		+ GenerateData.generateRandomString(150));
+		
+		Testlinkobjecten.CreateTS(driver).click();
+				
+		Thread.sleep(1000);
+				
+		// Boolean check of TC is aangemaakt
+		
+		driver.switchTo().defaultContent();	
+		driver.switchTo().frame("mainframe");	
+		
+		String pageSource = driver.switchTo().frame("treeframe").getPageSource();
+		String TS = "TS XXX";	
+		Boolean returnvalue = null;
+
+		if ((pageSource).contains(TS))
+			{ 
+				System.out.println("✔ Test Suite aangemaakt (of bestaat al)" );
+				returnvalue = true; 
+				String url = "https://m.popkey.co/136a10/X03AG.gif";
+				driver.get(url);
+				driver.manage().window().setSize(new Dimension(396, 333));
+				Thread.sleep(4500);
+				driver.close();
+				driver.quit();
+					
+			}	
+				
+		else
+			{ 
+				System.out.println("✖ Geen Test Suite aangemaakt (check code)");
+				returnvalue = false; 
+				driver.close();
+				driver.quit();
+					
+			}
+		
+				return returnvalue;
+					
+			
+		}
 }
 
 //----------------------------------------- THE END ------------------------------------------------------
