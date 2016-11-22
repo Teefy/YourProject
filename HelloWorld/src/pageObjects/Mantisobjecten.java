@@ -93,15 +93,21 @@ public class Mantisobjecten {
 		return element;
 	}
 	
-	public static WebElement ToonSeverity(WebDriver driver){
+	public static WebElement Select_Severity(WebDriver driver){
 		element =  driver.findElement(By.id("show_severity_filter"));
 		return element;
 	}
-	public static WebElement ToonCategoryFilter(WebDriver driver){
+
+	public static WebElement Vul_Severity(WebDriver driver){
+		element =  driver.findElement(By.name("show_severity[]"));
+		return element;
+	}
+		
+	public static WebElement SelectCategory(WebDriver driver){
 		element =  driver.findElement(By.id("show_category_filter"));
 		return element;
 	}
-	public static WebElement ToonCategory(WebDriver driver){
+	public static WebElement Vul_Category(WebDriver driver){
 		element =  driver.findElement(By.name("show_category[]"));
 		return element;
 	}
@@ -110,5 +116,23 @@ public class Mantisobjecten {
 		element =  driver.findElement(By.cssSelector("input[value='Submit Report']"));
 		return element;
 	}	
+
+	public static WebElement Select_reporter(WebDriver driver){
+		element =  driver.findElement(By.id("reporter_id_filter"));
+		return element;
+	}
+	
+	public static WebElement Vul_reporter(WebDriver driver){
+		element =  driver.findElement(By.name("reporter_id[]"));
+		return element;
+	}	
+	public static WebElement Click_CSV(WebDriver driver){
+		element =  driver.findElement(By.linkText("CSV Export"));
+		return element;
+	}
+	public static WebElement Click_XML(WebDriver driver){
+		element =  driver.findElement(By.linkText("XML Export"));
+		return element;
+	}
 	
 }
