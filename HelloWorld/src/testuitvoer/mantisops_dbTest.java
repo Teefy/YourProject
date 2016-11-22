@@ -14,12 +14,15 @@ public class mantisops_dbTest { // Zie Testanalyse mbt Report Issue (nu allen Ch
 		assertTrue(Tc1.ReportIssue("PRO", "developer", "Chrome", "1"));
 	}
 	
+	/* Deze TC in overleg met PO tot nader order uitgestelt - betrof Bijlage-functionaliteit
+	 * 
 	@Test
 	public void TC2_ReportIssue() throws InterruptedException // Deze TC checked naar een foutmelding (vandaar geslaagd bij 'no')
 	{
 		mantisops_db Tc2 = new mantisops_db();
 		assertFalse(Tc2.ReportIssue("PRO", "testanalyst", "Chrome", "2"));
 	}
+	*/
 	
 	@Test
 	public void TC3_ReportIssue() throws InterruptedException 
@@ -32,7 +35,7 @@ public class mantisops_dbTest { // Zie Testanalyse mbt Report Issue (nu allen Ch
 	public void TC4_ReportIssue() throws InterruptedException // Deze TC checked naar een foutmelding (vandaar geslaagd bij 'no')
 	{
 		mantisops_db Tc4 = new mantisops_db();
-		assertTrue(Tc4.ReportIssue("PRO", "developer", "Chrome", "4"));
+		assertFalse(Tc4.ReportIssue("PRO", "developer", "Chrome", "4"));
 	}
 			
 	@Test

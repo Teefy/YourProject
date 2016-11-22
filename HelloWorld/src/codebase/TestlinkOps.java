@@ -260,7 +260,7 @@ public Boolean createTestSpecsTC (String Omgeving, String Rol, String Browser) t
 				
 		driver.switchTo().frame("treeframe");
 				
-		Testlinkobjecten.Kroesuway3000project(driver).click();
+		Testlinkobjecten.TestprojectSelect(driver).click();
 		Thread.sleep(2000);
 				
 		// Jezus christus :o 
@@ -367,7 +367,7 @@ public Boolean createTestSpecsTCFail (String Omgeving, String Rol, String Browse
 	
 		driver.switchTo().frame("treeframe");
 	
-		Testlinkobjecten.Kroesuway3000project(driver).click();
+		Testlinkobjecten.TestprojectSelect(driver).click();
 		Thread.sleep(2000);
 	
 		// Jezus christus :o 

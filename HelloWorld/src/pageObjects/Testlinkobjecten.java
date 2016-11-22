@@ -126,8 +126,8 @@ public class Testlinkobjecten {
 	return element;
 	} 
 	
-	public static WebElement Kroesuway3000project(WebDriver driver){
-		element = driver.findElement(By.xpath("//*[@id='extdd-12']/span"));
+	public static WebElement TestprojectSelect(WebDriver driver){
+		element = driver.findElement(By.xpath("//*[@id='extdd-6']/span"));
 		return element;
 		} 
 		
