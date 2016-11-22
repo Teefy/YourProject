@@ -4,7 +4,6 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import pageObjects.Mantisobjecten;
@@ -67,7 +66,7 @@ public class mantisops_db {
 		driver.findElement(By.cssSelector("input[value='10']")).click();
 		
 		// Issue submit
-		driver.findElement(By.cssSelector("input[value='Submit Report']")).click();	 
+		Mantisobjecten.submit_button(driver).click();	 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		
@@ -111,7 +110,8 @@ public class mantisops_db {
 		driver.manage().window().maximize(); 
 
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.findElement(By.id("arrow-right-wrapper")).click();
+		navigeren.PijlRechts(driver).click();
+		
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		
 		// Verificatie van userrol in html
@@ -153,13 +153,16 @@ public class mantisops_db {
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
 		driver.manage().window().maximize(); 
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.findElement(By.id("arrow-right-wrapper")).click();
+		
+		navigeren.PijlRechts(driver).click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.findElement(By.linkText("Issues")).click();
+		
+		navigeren.NavigeerMantis(driver).click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		//driver.findElement(By.linkText("My View")).click();
-		driver.findElement(By.linkText("View Issues")).click();
 		
+		navigeren.BekijkBevindingen(driver).click();
+				
 		String title = driver.getTitle();
 		System.out.println("Titel van pagina: " + title);
 		

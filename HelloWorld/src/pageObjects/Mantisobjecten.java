@@ -105,6 +105,10 @@ public class Mantisobjecten {
 		element =  driver.findElement(By.name("show_category[]"));
 		return element;
 	}
-	
+
+	public static WebElement submit_button(WebDriver driver){
+		element =  driver.findElement(By.cssSelector("input[value='Submit Report']"));
+		return element;
+	}	
 	
 }
