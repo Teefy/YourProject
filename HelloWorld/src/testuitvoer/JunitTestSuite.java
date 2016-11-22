@@ -6,8 +6,11 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 
 @Suite.SuiteClasses({
-   LoginPortalTest.class,
-   mantisops_dbTest.class
+	Beoordeling_login_Test.class,
+	LoginPortalTest.class,
+	mantisops_dbTest.class,
+	RapportageTest.class,
+	TestlinkOpsTest.class
 })
 
 public class JunitTestSuite {   
