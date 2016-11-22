@@ -1,18 +1,21 @@
 package codebase;
 
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import pageObjects.Testlinkobjecten;
 import pageObjects.navigeren;
+import probeercode.GenerateData;
 
 public class TestlinkOps {
 
-public String createTestProject (String Omgeving, String Rol, String Browser) {
+//----------------------------------- Create Test Project ------------------------------------------------
+//------------------------------------------ TC01 --------------------------------------------------------	
+		
+public Boolean createTestProject (String Omgeving, String Rol, String Browser) throws InterruptedException {
 			
 		// Inloggen CP/T
 	
@@ -44,7 +47,6 @@ public String createTestProject (String Omgeving, String Rol, String Browser) {
 		Testlinkobjecten.Prefix_en_Description(driver).sendKeys("TC" + Keys.TAB + 
 		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
 		
-		
 		// Sectie: Enhanced features	
 		
 		Testlinkobjecten.InventoryRadiobutton(driver).click();
@@ -83,21 +85,23 @@ public String createTestProject (String Omgeving, String Rol, String Browser) {
 		
 		
 		// Verificatie van TC 
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		String pageSource = driver.getPageSource();
 		String expectedContent = "Automated Test Project";	
-		String returnvalue = null;
+		Boolean returnvalue = null;
 
 		if ((pageSource).contains(expectedContent))
 		{ 
 			System.out.println("✔ Test Project aangemaakt (en verwijderd)" );
-			returnvalue = "true"; 
+			returnvalue = true; 
 			// Verwijderen van aangemaakt issue tbv duplicaten
 			driver.findElement(By.xpath("//*[@id='item_view']/tbody/tr[2]/td[8]/img")).click();
 			driver.findElement(By.id("ext-gen20")).click();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			
+			Thread.sleep(1000);
+			String url = "https://m.popkey.co/136a10/X03AG.gif";
+			driver.get(url);
+			driver.manage().window().setSize(new Dimension(396, 333));
+			Thread.sleep(4500);
 			driver.close();
 			driver.quit();
 			
@@ -106,7 +110,7 @@ public String createTestProject (String Omgeving, String Rol, String Browser) {
 		else
 		{ 
 			System.out.println("✖ Geen Test Project aangemaakt");
-			returnvalue = "false"; 
+			returnvalue = false; 
 			driver.close();
 			driver.quit();
 			
@@ -116,7 +120,10 @@ public String createTestProject (String Omgeving, String Rol, String Browser) {
 			
 }
 
-public String createTestProjectFail (String Omgeving, String Rol, String Browser) {
+//----------------------------------- Create Test Project ------------------------------------------------
+//------------------------------------------ TC02 --------------------------------------------------------
+
+public Boolean createTestProjectFail (String Omgeving, String Rol, String Browser) throws InterruptedException {
 			
 		// Inloggen CP/T
 	
@@ -145,10 +152,9 @@ public String createTestProjectFail (String Omgeving, String Rol, String Browser
 		Testlinkobjecten.ProjectNaam(driver).sendKeys("");
 
 		// Prefix + Description (bereikt middels TAB) 
-		Testlinkobjecten.Prefix_en_Description(driver).sendKeys("TC" + Keys.TAB + 
-		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
 		
-		
+		Testlinkobjecten.Prefix_en_Description(driver).sendKeys("TC" + Keys.TAB + GenerateData.generateRandomString(250));
+				
 		// Sectie: Enhanced features	
 		
 		Testlinkobjecten.InventoryRadiobutton(driver).click();
@@ -181,40 +187,41 @@ public String createTestProjectFail (String Omgeving, String Rol, String Browser
 		Testlinkobjecten.PublicRadiobutton(driver).click();
 
 		// Sectie: Create of Cancel 
-		System.out.println(driver.findElement(By.id("error_icon_tprojectName")).getText()); 
 		
 		Testlinkobjecten.CreateProjectButton(driver).click();
 		//Testlinkobjecten.CancelProjectButton(driver).click();
 		
 		
 		// Verificatie van TC 
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
+		
 		String pageSource = driver.getPageSource();
 		String expectedContent = "Automated Test Project";	
 		String error = driver.findElement(By.id("error_icon_tprojectName")).getText();
-		String returnvalue = null;
+		Boolean returnvalue = null;
 
 		if ((pageSource).contains(expectedContent))
 		{ 
 			System.out.println("✖ Test Project aangemaakt (en verwijderd)" );
-			returnvalue = "true"; 
+			returnvalue = true; 
 			// Verwijderen van aangemaakt issue tbv duplicaten
 			driver.findElement(By.xpath("//*[@id='item_view']/tbody/tr[2]/td[8]/img")).click();
-			driver.findElement(By.id("ext-gen20")).click();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
+			driver.findElement(By.id("ext-gen20")).click();	
 			driver.close();
-			driver.quit();
-			
+			driver.quit();			
 		}	
 		
 		else if ((pageSource).contains(error))
 		{ 
 			System.out.println("✔ Geen Test Project aangemaakt (foutmelding getoont)");
-			returnvalue = "false"; 
+			returnvalue = false; 
+			Thread.sleep(1000);
+			String url = "https://media.giphy.com/media/Y01jP8QeLOox2/giphy.gif";
+			driver.get(url);
+			driver.manage().window().setSize(new Dimension(358, 340));
+			Thread.sleep(3400);
 			driver.close();
 			driver.quit();
+			
 			
 		}
 
@@ -222,44 +229,220 @@ public String createTestProjectFail (String Omgeving, String Rol, String Browser
 			
 }
 
+//--------------------------- Create Test Specification & Test Case --------------------------------------
+//------------------------------------------ TC01 --------------------------------------------------------
 
-public String createTestSpecification (String Omgeving, String Rol, String Browser) {
 
-	// Inloggen CP/T
+public Boolean createTestSpecsTC (String Omgeving, String Rol, String Browser) throws InterruptedException {
+				
+		LoginPortal PortalInloggen = new LoginPortal();
+				
+		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
+				
+		driver.manage().window().maximize(); 
+				
+		Thread.sleep(500);
+				
+		navigeren.PijlRechts(driver).click();
+				
+		Thread.sleep(500);
+				
+		Testlinkobjecten.OpenTestLink(driver).click();
+				
+		Thread.sleep(500);
+				
+	    // Voer Projectnaam in
 
-	LoginPortal PortalInloggen = new LoginPortal();
+		Testlinkobjecten.OpenTestSpecification(driver).click();
+				
+		Thread.sleep(500);
+				
+		// uitklappen treeframe + selectie
+				
+		driver.switchTo().frame("treeframe");
+				
+		Testlinkobjecten.Kroesuway3000project(driver).click();
+		Thread.sleep(2000);
+				
+		// Jezus christus :o 
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame("mainframe");
+		driver.switchTo().frame("workframe");
+				
+		// Druk op Create-button 
+				
+		Testlinkobjecten.CreateTCButton(driver).click();
+				
+		// Invullen velden TC
+				
+		Testlinkobjecten.TCNaam_beschrijving(driver).sendKeys("Test Kees" + Keys.TAB + "Kroesuway 3000 bot: " 
+		+ GenerateData.generateRandomString(250) + Keys.TAB + GenerateData.generateRandomString(150));
+				
+		// Selectie dropdowns
 
-	WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
+		new Select(pageObjects.Testlinkobjecten.DropDown_status(driver)).selectByVisibleText("Future");
 
-	driver.manage().window().maximize(); 
+		new Select(pageObjects.Testlinkobjecten.DropDown_importance(driver)).selectByVisibleText("High");
 
-	driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		new Select(pageObjects.Testlinkobjecten.DropDown_execution(driver)).selectByVisibleText("Automated");
 
-	// Navigeren naar Testlink
+		// Tijdsduur TC
+				
+		Testlinkobjecten.Duration_field(driver).sendKeys(GenerateData.generateRandomNumber(2));
+						
+		// Create of Cancel TC 
+				
+		Testlinkobjecten.CreateTCinTP(driver).click();
+		// Testlinkobjecten.CancelTCinTP(driver).click();
+				
+		Thread.sleep(1000);
+				
+		// Boolean check of TC is aangemaakt
+				
+		String pageSource = driver.getPageSource();
+		String TC = "Test Kees";	
+		Boolean returnvalue = null;
 
-	navigeren.PijlRechts(driver).click();
+		if ((pageSource).contains(TC))
+			{ 
+				System.out.println("✔ Test Case aangemaakt (en verwijderd)" );
+				returnvalue = true; 
 
-	driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+				// Verwijderen van aangemaakt issue tbv duplicaten
+					
+					driver.findElement(By.name("delete_tc")).click();
+					Thread.sleep(1000);
+					driver.findElement(By.id("do_delete")).click();
+					Thread.sleep(1000);
+					String url = "https://m.popkey.co/136a10/X03AG.gif";
+					driver.get(url);
+					driver.manage().window().setSize(new Dimension(396, 333));
+					Thread.sleep(4500);
+					driver.close();
+					driver.quit();
+					
+				}	
+				
+				else
+				{ 
+					System.out.println("✖ Geen Test Case aangemaakt");
+					returnvalue = false; 
+					driver.close();
+					driver.quit();
+					
+				}
 
-	Testlinkobjecten.OpenTestLink(driver).click();
+				return returnvalue;
+					
+				
+		}
+	
+//--------------------------- Create Test Specification & Test Case --------------------------------------
+//------------------------------------------ TC02 --------------------------------------------------------
 
-	driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+public Boolean createTestSpecsTCFail (String Omgeving, String Rol, String Browser) throws InterruptedException {
+	
+		LoginPortal PortalInloggen = new LoginPortal();
+	
+		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
+	
+		driver.manage().window().maximize(); 
+	
+		Thread.sleep(500);
+	
+		navigeren.PijlRechts(driver).click();
+	
+		Thread.sleep(500);
+	
+		Testlinkobjecten.OpenTestLink(driver).click();
+	
+		Thread.sleep(500);
+	
+		// Voer Projectnaam in
 
-	// Navigeer naar Test Specification
+		Testlinkobjecten.OpenTestSpecification(driver).click();
+	
+		Thread.sleep(500);
+	
+		// uitklappen treeframe + selectie
+	
+		driver.switchTo().frame("treeframe");
+	
+		Testlinkobjecten.Kroesuway3000project(driver).click();
+		Thread.sleep(2000);
+	
+		// Jezus christus :o 
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame("mainframe");
+		driver.switchTo().frame("workframe");
+	
+		// Druk op Create-button 
+	
+		Testlinkobjecten.CreateTCButton(driver).click();
+	
+		// Invullen velden TC
+	
+		Testlinkobjecten.TCNaam_beschrijving(driver).sendKeys("" + Keys.TAB + "Kroesuway 3000 bot: "
+		+ GenerateData.generateRandomString(250) + Keys.TAB + GenerateData.generateRandomString(150));
+	
+		// Selectie dropdowns
 
-	driver.switchTo().frame("mainframe");
-	driver.findElement(By.linkText("Test Specification")).click();
+		new Select(pageObjects.Testlinkobjecten.DropDown_status(driver)).selectByVisibleText("Future");
 
-	// uitklappen tree
-	driver.switchTo().frame("treeframe");
-	driver.findElement(By.xpath("//*[@id='extdd-6']/span")).click();
+		new Select(pageObjects.Testlinkobjecten.DropDown_importance(driver)).selectByVisibleText("High");
 
-	// Druk op Create-button ===============================
+		new Select(pageObjects.Testlinkobjecten.DropDown_execution(driver)).selectByVisibleText("Automated");
 
-	driver.switchTo().frame("workframe");
+		// Tijdsduur TC
+	
+		Testlinkobjecten.Duration_field(driver).sendKeys(GenerateData.generateRandomNumber(2));
+	
+		// Create of Cancel TC 
+	
+		Testlinkobjecten.CreateTCinTP(driver).click();
+		// Testlinkobjecten.CancelTCinTP(driver).click();
+	
+		Thread.sleep(1000);
+	
+		// Boolean check of TC is aangemaakt
+	
+		String pageSource = driver.getPageSource();
+		String TC = "Test Kees";	
+		String error = driver.findElement(By.id("error_icon_testcase_name")).getText();
+		Boolean returnvalue = null;
 
-	driver.findElement(By.id("create_tc")).click();
+		if ((pageSource).contains(TC))
+		{ 
+			System.out.println("✖ Test Case aangemaakt (en verwijderd)" );
+			returnvalue = true; 
 
-	return null;
-	}
+			// Verwijderen van aangemaakt issue tbv duplicaten
+		
+			driver.findElement(By.name("delete_tc")).click();
+			Thread.sleep(1000);
+			driver.findElement(By.id("do_delete")).click();
+			driver.close();
+			driver.quit();
+		
+		}	
+ 
+		else if ((pageSource).contains(error))
+		{ 
+			System.out.println("✔ Geen Test Case aangemaakt (foutmelding getoont)");
+			returnvalue = false; 
+			Thread.sleep(1000);
+			String url = "https://media.giphy.com/media/Y01jP8QeLOox2/giphy.gif";
+			driver.get(url);
+			driver.manage().window().setSize(new Dimension(358, 340));
+			Thread.sleep(3400);
+			driver.close();
+			driver.quit();
+			
+		}
+	
+	return returnvalue;
+	
 }
+}
+
+//----------------------------------------- THE END ------------------------------------------------------
