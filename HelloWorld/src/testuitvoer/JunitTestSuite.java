@@ -7,7 +7,6 @@ import org.junit.runners.Suite;
 
 @Suite.SuiteClasses({
 	Beoordeling_login_Test.class,
-	LoginPortalTest.class,
 	mantisops_dbTest.class,
 	RapportageTest.class,
 	TestlinkOpsTest.class
