@@ -4,7 +4,6 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -22,13 +21,13 @@ public class mantisops_db {
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
 		driver.manage().window().maximize(); 
 		
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(1000);
 		navigeren.PijlRechts(driver).click();
 		
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(1000);
 		navigeren.NavigeerMantis(driver).click();
 		
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(1000);
 		navigeren.MaakBevinding(driver).click();
 				
 		// verbinding met MySql database en specificatie
@@ -72,7 +71,7 @@ public class mantisops_db {
 		
 		// Issue submit
 		Mantisobjecten.submit_button(driver).click();	 
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Thread.sleep(2000);
 
 		
 		String pageSource = driver.getPageSource();
@@ -114,10 +113,11 @@ public class mantisops_db {
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
 		driver.manage().window().maximize(); 
 
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(1000);
+		
 		navigeren.PijlRechts(driver).click();
 		
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(1000);
 		
 		// Verificatie van userrol in html
 		
@@ -157,13 +157,17 @@ public class mantisops_db {
 		LoginPortal PortalInloggen = new LoginPortal();
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
 		driver.manage().window().maximize(); 
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+		Thread.sleep(1000);
 		
 		navigeren.PijlRechts(driver).click();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		
+
+		Thread.sleep(1000);
+
 		navigeren.NavigeerMantis(driver).click();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		
+		Thread.sleep(1000);
+		
 		//driver.findElement(By.linkText("My View")).click();
 		
 		navigeren.BekijkBevindingen(driver).click();
@@ -204,7 +208,8 @@ public class mantisops_db {
 		WebDriver driver = PortalInloggen.inloggenError(Omgeving,Rol,Browser);
 		
 		driver.manage().window().setSize(new Dimension(1280, 920));
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+		Thread.sleep(2000);
 
 		// Verificatie van foutmelding incl. substring waarbinnen de foutmelding staat
 		
@@ -240,9 +245,13 @@ public class mantisops_db {
 		LoginPortal PortalInloggen = new LoginPortal();
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
 		driver.manage().window().maximize(); 
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		
+		Thread.sleep(1000);
+		
 		driver.findElement(By.id("arrow-right-wrapper")).click();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+		Thread.sleep(1000);
+
 		driver.findElement(By.linkText("Issues")).click();
 		
 		Thread.sleep(2000);
