@@ -4,7 +4,6 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -22,13 +21,13 @@ public class mantisops_db {
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
 		driver.manage().window().maximize(); 
 		
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(1000);
 		navigeren.PijlRechts(driver).click();
 		
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(1000);
 		navigeren.NavigeerMantis(driver).click();
 		
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(1000);
 		navigeren.MaakBevinding(driver).click();
 				
 		// verbinding met MySql database en specificatie
@@ -72,7 +71,7 @@ public class mantisops_db {
 		
 		// Issue submit
 		Mantisobjecten.submit_button(driver).click();	 
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Thread.sleep(2000);
 
 		
 		String pageSource = driver.getPageSource();
@@ -114,10 +113,11 @@ public class mantisops_db {
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
 		driver.manage().window().maximize(); 
 
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(1000);
+		
 		navigeren.PijlRechts(driver).click();
 		
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(1000);
 		
 		// Verificatie van userrol in html
 		
@@ -157,13 +157,17 @@ public class mantisops_db {
 		LoginPortal PortalInloggen = new LoginPortal();
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
 		driver.manage().window().maximize(); 
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+		Thread.sleep(1000);
 		
 		navigeren.PijlRechts(driver).click();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		
+
+		Thread.sleep(1000);
+
 		navigeren.NavigeerMantis(driver).click();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		
+		Thread.sleep(1000);
+		
 		//driver.findElement(By.linkText("My View")).click();
 		
 		navigeren.BekijkBevindingen(driver).click();
@@ -204,7 +208,8 @@ public class mantisops_db {
 		WebDriver driver = PortalInloggen.inloggenError(Omgeving,Rol,Browser);
 		
 		driver.manage().window().setSize(new Dimension(1280, 920));
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+		Thread.sleep(2000);
 
 		// Verificatie van foutmelding incl. substring waarbinnen de foutmelding staat
 		
@@ -234,4 +239,90 @@ public class mantisops_db {
 
 	}
 	
+<<<<<<< HEAD
 }
+=======
+//----------------------------------------------------------------------------------------------------------------
+	public boolean AttachFile(String Omgeving, String Rol, String Browser) throws AWTException, InterruptedException 
+	{
+		LoginPortal PortalInloggen = new LoginPortal();
+		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
+		driver.manage().window().maximize(); 
+		
+		Thread.sleep(1000);
+		
+		driver.findElement(By.id("arrow-right-wrapper")).click();
+
+		Thread.sleep(1000);
+
+		driver.findElement(By.linkText("Issues")).click();
+		
+		Thread.sleep(2000);
+		
+		//Maak een rapport aan
+		driver.findElement(By.linkText("Report Issue")).click();
+		
+		Thread.sleep(1000);
+		
+		//Voer category op
+		new Select(Mantisobjecten.DropDown_category(driver)).selectByVisibleText("Issue");
+		
+		//Voer Summary op
+		Mantisobjecten.text_summary(driver).sendKeys("Dennis attachement");		
+	 
+		//Voer Description op
+		Mantisobjecten.text_description(driver).sendKeys("Attachement > 500mb");
+	
+	
+		Thread.sleep(1000);
+	
+		//Voer testtype op
+		new Select (Mantisobjecten.DropDown_custom_field_1(driver)).selectByVisibleText("UAT");
+	
+	
+		Thread.sleep(1000);
+	
+		
+		//Voer attachement op > 500 MB
+		driver.findElement(By.id("ufile[]")).click();
+		
+		StringSelection ss = new StringSelection("under_construction.jpg");							
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);							
+									
+		//native key strokes for CTRL, V and ENTER keys						
+		Robot robot = new Robot();						
+									
+		robot.keyPress(KeyEvent.VK_CONTROL);						
+		robot.keyPress(KeyEvent.VK_V);						
+		robot.keyRelease(KeyEvent.VK_V);						
+		robot.keyRelease(KeyEvent.VK_CONTROL);						
+		robot.keyPress(KeyEvent.VK_ENTER);						
+		robot.keyRelease(KeyEvent.VK_ENTER);				
+			
+		Thread.sleep(2000);
+		
+		//Klik op de button 'Submit Report'
+		driver.findElement(By.className("button")).click();
+			
+		String pageSource = driver.getPageSource();
+		String expectedContent = "File upload failed";
+		boolean returnvalue = true;
+		
+			if ((pageSource).contains(expectedContent))
+			{
+				System.out.println("Rapport is niet aangemaakt. De bestandsgroote > 500MB" );
+				returnvalue = true;
+			}
+			else
+			{
+				System.out.println("Rapport is aangemaakt");
+				returnvalue = false;
+			}
+	
+			driver.quit();
+			
+		return returnvalue  ;
+}
+}
+
+>>>>>>> branch 'master' of https://github.com/Teefy/YourProject
