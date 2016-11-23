@@ -1,4 +1,9 @@
 package codebase;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Dimension;
@@ -229,4 +234,103 @@ public class mantisops_db {
 
 	}
 	
+//----------------------------------------------------------------------------------------------------------------
+	public boolean AttachFile(String Omgeving, String Rol, String Browser) throws AWTException 
+	{
+		LoginPortal PortalInloggen = new LoginPortal();
+		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
+		driver.manage().window().maximize(); 
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.findElement(By.id("arrow-right-wrapper")).click();
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.findElement(By.linkText("Issues")).click();
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//Maak een rapport aan
+		driver.findElement(By.linkText("Report Issue")).click();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//Voer category op
+	new Select(Mantisobjecten.DropDown_category(driver)).selectByVisibleText("Issue");
+		
+		//Voer Summary op
+	Mantisobjecten.text_summary(driver).sendKeys("Dennis attachement");		
+	 
+		//Voer Description op
+	Mantisobjecten.text_description(driver).sendKeys("Attachement > 500mb");
+	
+	try {
+		Thread.sleep(1000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+		//Voer testtype op
+	new Select (Mantisobjecten.DropDown_custom_field_1(driver)).selectByVisibleText("UAT");
+	
+	try {
+		Thread.sleep(1000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		
+		//Voer attachement op > 500 MB
+		driver.findElement(By.id("ufile[]")).click();
+		
+		StringSelection ss = new StringSelection("under_construction.jpg");							
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);							
+									
+			//native key strokes for CTRL, V and ENTER keys						
+			Robot robot = new Robot();						
+									
+			robot.keyPress(KeyEvent.VK_CONTROL);						
+			robot.keyPress(KeyEvent.VK_V);						
+			robot.keyRelease(KeyEvent.VK_V);						
+			robot.keyRelease(KeyEvent.VK_CONTROL);						
+			robot.keyPress(KeyEvent.VK_ENTER);						
+			robot.keyRelease(KeyEvent.VK_ENTER);				
+			
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			//Klik op de button 'Submit Report'
+			driver.findElement(By.className("button")).click();
+			
+			String pageSource = driver.getPageSource();
+			String expectedContent = "File upload failed";
+			boolean returnvalue = true;
+		
+			if ((pageSource).contains(expectedContent))
+			{
+				System.out.println("Rapport is niet aangemaakt. De bestandsgroote > 500MB" );
+				returnvalue = true;
+			}
+			else
+			{
+				System.out.println("Rapport is aangemaakt");
+				returnvalue = false;
+			}
+	
+			driver.quit();
+			
+		return returnvalue  ;
 }
+}
+
