@@ -235,7 +235,7 @@ public class mantisops_db {
 	}
 	
 //----------------------------------------------------------------------------------------------------------------
-	public boolean AttachFile(String Omgeving, String Rol, String Browser) throws AWTException 
+	public boolean AttachFile(String Omgeving, String Rol, String Browser) throws AWTException, InterruptedException 
 	{
 		LoginPortal PortalInloggen = new LoginPortal();
 		WebDriver driver = PortalInloggen.inloggen(Omgeving,Rol,Browser);
@@ -245,47 +245,31 @@ public class mantisops_db {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.findElement(By.linkText("Issues")).click();
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Thread.sleep(2000);
 		
 		//Maak een rapport aan
 		driver.findElement(By.linkText("Report Issue")).click();
 		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Thread.sleep(1000);
+		
 		//Voer category op
-	new Select(Mantisobjecten.DropDown_category(driver)).selectByVisibleText("Issue");
+		new Select(Mantisobjecten.DropDown_category(driver)).selectByVisibleText("Issue");
 		
 		//Voer Summary op
-	Mantisobjecten.text_summary(driver).sendKeys("Dennis attachement");		
+		Mantisobjecten.text_summary(driver).sendKeys("Dennis attachement");		
 	 
 		//Voer Description op
-	Mantisobjecten.text_description(driver).sendKeys("Attachement > 500mb");
+		Mantisobjecten.text_description(driver).sendKeys("Attachement > 500mb");
 	
-	try {
+	
 		Thread.sleep(1000);
-	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
 	
 		//Voer testtype op
-	new Select (Mantisobjecten.DropDown_custom_field_1(driver)).selectByVisibleText("UAT");
+		new Select (Mantisobjecten.DropDown_custom_field_1(driver)).selectByVisibleText("UAT");
 	
-	try {
+	
 		Thread.sleep(1000);
-	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+	
 		
 		//Voer attachement op > 500 MB
 		driver.findElement(By.id("ufile[]")).click();
@@ -293,29 +277,24 @@ public class mantisops_db {
 		StringSelection ss = new StringSelection("under_construction.jpg");							
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);							
 									
-			//native key strokes for CTRL, V and ENTER keys						
-			Robot robot = new Robot();						
+		//native key strokes for CTRL, V and ENTER keys						
+		Robot robot = new Robot();						
 									
-			robot.keyPress(KeyEvent.VK_CONTROL);						
-			robot.keyPress(KeyEvent.VK_V);						
-			robot.keyRelease(KeyEvent.VK_V);						
-			robot.keyRelease(KeyEvent.VK_CONTROL);						
-			robot.keyPress(KeyEvent.VK_ENTER);						
-			robot.keyRelease(KeyEvent.VK_ENTER);				
+		robot.keyPress(KeyEvent.VK_CONTROL);						
+		robot.keyPress(KeyEvent.VK_V);						
+		robot.keyRelease(KeyEvent.VK_V);						
+		robot.keyRelease(KeyEvent.VK_CONTROL);						
+		robot.keyPress(KeyEvent.VK_ENTER);						
+		robot.keyRelease(KeyEvent.VK_ENTER);				
 			
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			//Klik op de button 'Submit Report'
-			driver.findElement(By.className("button")).click();
+		Thread.sleep(2000);
+		
+		//Klik op de button 'Submit Report'
+		driver.findElement(By.className("button")).click();
 			
-			String pageSource = driver.getPageSource();
-			String expectedContent = "File upload failed";
-			boolean returnvalue = true;
+		String pageSource = driver.getPageSource();
+		String expectedContent = "File upload failed";
+		boolean returnvalue = true;
 		
 			if ((pageSource).contains(expectedContent))
 			{
