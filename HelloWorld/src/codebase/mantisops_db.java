@@ -239,9 +239,6 @@ public class mantisops_db {
 
 	}
 	
-<<<<<<< HEAD
-}
-=======
 //----------------------------------------------------------------------------------------------------------------
 	public boolean AttachFile(String Omgeving, String Rol, String Browser) throws AWTException, InterruptedException 
 	{
@@ -325,4 +322,3 @@ public class mantisops_db {
 }
 }
 
->>>>>>> branch 'master' of https://github.com/Teefy/YourProject
