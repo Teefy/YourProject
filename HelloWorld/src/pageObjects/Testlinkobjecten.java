@@ -132,6 +132,20 @@ public class Testlinkobjecten {
 		} 
 		
 	
+	public static WebElement CreateTSButton(WebDriver driver){
+		element = driver.findElement(By.id("new_testsuite"));
+		return element;
+		} 
+	
+	public static WebElement TSNaam_beschrijving(WebDriver driver){
+		element = driver.findElement(By.id("name"));
+		return element;
+		} 
+	
+	public static WebElement CreateTS(WebDriver driver){
+		element = driver.findElement(By.name("add_testsuite_button"));
+		return element;
+		} 
 
 	public static WebElement CreateTCButton(WebDriver driver){
 		element = driver.findElement(By.id("create_tc"));

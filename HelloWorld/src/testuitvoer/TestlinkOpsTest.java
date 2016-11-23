@@ -13,27 +13,34 @@ public class TestlinkOpsTest {
 	public void createTestProject_TC01() throws InterruptedException {
 		
 		TestlinkOps TC01 = new TestlinkOps();
-		assertEquals (true, TC01.createTestProject("PRO", "testleader", "Chrome"));
+		assertTrue (TC01.createTestProject("PRO", "testleader", "Chrome"));
 	}
 
 	@Test
 	public void createTestProject_TC02() throws InterruptedException {
 		
 		TestlinkOps TC02 = new TestlinkOps();
-		assertEquals (false, TC02.createTestProjectFail("PRO", "testleader", "Chrome"));
+		assertFalse (TC02.createTestProjectFail("PRO", "testleader", "Chrome"));
 	}
 	
 	@Test
 	public void createTestSpecsTC_TC01() throws InterruptedException {
 		
 		TestlinkOps TC01 = new TestlinkOps();
-		assertEquals (true, TC01.createTestSpecsTC("PRO", "testleader", "Chrome"));
+		assertTrue (TC01.createTestSpecsTC("PRO", "testleader", "Chrome"));
 	}
 	
 	@Test
 	public void createTestSpecsTC_TC02() throws InterruptedException {
 
 		TestlinkOps TC02 = new TestlinkOps();
-		assertEquals (false, TC02.createTestSpecsTCFail("PRO", "testleader", "Chrome"));
+		assertFalse (TC02.createTestSpecsTCFail("PRO", "testleader", "Chrome"));
+	}
+
+	@Test
+	public void createTestSuiteTC_TC01() throws InterruptedException {
+
+		TestlinkOps TC01 = new TestlinkOps();
+		assertTrue (TC01.createTestSuiteTC("PRO", "testleader", "Chrome"));
 	}
 }
