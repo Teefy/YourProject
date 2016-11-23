@@ -1,8 +1,6 @@
 package testuitvoer;
 import static org.junit.Assert.*;
 
-import java.awt.AWTException;
-
 import org.junit.Test;
 
 import codebase.mantisops_db;
@@ -68,12 +66,7 @@ public class mantisops_dbTest { // Zie Testanalyse mbt Report Issue (nu allen Ch
 		assertFalse (Tc8.ReportIssueSH("PRO", "stakeholder", "Chrome"));	
 	}
 	
-	@Test // Deze TC checked of er een validatie getoond word als het bestand > 500 MB is
-	public void TC9_ReportIssue() throws AWTException
-	{
-		mantisops_db TC9 = new mantisops_db();
-		assertTrue(TC9.AttachFile("PRO", "testleader", "Chrome"));	
-	}
+	
 	/*
 	
 	@Test
