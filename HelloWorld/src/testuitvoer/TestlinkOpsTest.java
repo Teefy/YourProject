@@ -8,7 +8,7 @@ import codebase.TestlinkOps;
 
 public class TestlinkOpsTest {
 	
-	//vuile !@!@#
+	//vuile speklap
 	@Test
 	public void createTestProject_TC01() throws InterruptedException {
 		
